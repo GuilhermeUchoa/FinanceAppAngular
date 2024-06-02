@@ -1,0 +1,137 @@
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ativo</th>
+                <th scope="col">Cotacao</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Porcentagem</th>
+                <th scope="col">Meta</th>
+                <th scope="col">Status</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Aporte</th>
+                <th scope="col">Cotas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of portfolio let i=index" class="tr.tbody">
+                <td>{{i}}</td>
+
+                <!-- Button modal -->
+                <td id="ativo">
+                    <!-- Button trigger modal -->
+                    <button id="buttonAtivo" *ngIf=" item.status == 'comprar'" type="button" class="btn btn-primary"
+                        data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal'+item.id">
+                        {{item.ativo}}
+                    </button>
+                    <button id="buttonAtivo" *ngIf=" item.status == 'aguardar'" type="button" class="btn btn-warning"
+                        data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal'+item.id">
+                        {{item.ativo}}
+                    </button>
+                    <button id="buttonAtivo" *ngIf=" item.status == ''" type="button" class="btn btn-success"
+                        data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal'+item.id">
+                        {{item.ativo}}
+                    </button>
+                    <button id="buttonAtivo" *ngIf=" item.status == 'vender'" type="button" class="btn btn-danger"
+                        data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal'+item.id">
+                        {{item.ativo}}
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal{{item.id}}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{item.ativo}}</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <textarea (change)="atualizarComentario($event,item.id)" name="" id="" cols="55"
+                                        rows="10">{{item.comentarios}}</textarea>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+
+                <td>{{item.cotacao|currency:'BRL'}}</td>
+
+
+                <td>
+                    {{item.quantidade}}
+                </td>
+
+                <!-- Valor calculado -->
+                <td>{{item.quantidade*item.cotacao|currency:'BRL'}}</td>
+
+                <!-- porcentagem -->
+                <td [style]="item.valor/valorTotalCarteira*100 < item.meta ? 'color:red' : ''">
+                    {{item.valor/valorTotalCarteira*100 |number : '1.2-2'}}%</td>
+
+                <!-- input Meta -->
+                <td>
+                    <div class="input-group input-group-sm mb-3">
+                        <input type="number" class="form-control" id="meta" aria-label="Amount (to the nearest dollar)"
+                            value="{{item.meta}}" (change)="atualizarMeta($event,item.id)" name="meta" step="0.1"
+                            style="text-align: center; width: 50px;">
+                        <span class="input-group-text">%</span>
+                    </div>
+                </td>
+                <!-- Status -->
+                <td style="align-items: center;">
+                    <select (change)="atualizarStatus($event,item.id)" class="form-select form-select-sm"
+                        aria-label="Default select example" style="width: 135px;">
+                        <option selected>{{item.status|uppercase}}</option>
+                        <option value="1">Comprar</option>
+                        <option value="2">Aguardar</option>
+                        <option value="3">Vender</option>
+                    </select>
+                </td>
+
+                <td>{{item.tipo|uppercase}}</td>
+                <td class="aporte">0</td>
+                <td>
+                    <div class="input-group input-group-sm mb-3">
+                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" value="0"
+                            name="cota" step="1" (change)="calculoGeral($event)"
+                            style="text-align: center; width: 50px;">
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ativo</th>
+                <th scope="col">Cotacao</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">{{valorTotalCarteira|currency:'BRL'}}</th>
+                <th scope="col">Porcentagem</th>
+                <th scope="col">
+                    <div class="input-group input-group-sm mb-3">
+                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)"
+                            [value]="metaTotalCarteira | number : '1.2-2'" name="meta"
+                            style="text-align: center; width: 80px; font-weight: 900;">
+                        <span class="input-group-text">%</span>
+                    </div>
+                </th>
+                <th scope="col">Status</th>
+                <th scope="col">Tipo</th>
+                <th scope="col" id="aporteValorTotal">R$ 0</th>
+                <th scope="col">Cotas</th>
+
+            </tr>
+        </tfoot>
+    </table>
+</div>

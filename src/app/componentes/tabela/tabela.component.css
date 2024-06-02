@@ -1,0 +1,25 @@
+mat-form-field {
+    margin-right: 12px;
+}
+
+
+table thead tr{
+
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #fff;
+    box-shadow: 0 0 1px 0px #ddd, 0px 0px 17px 4px #fff;
+    border-radius: 10px;
+}
+
+table tfoot tr{
+
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    background: #fff;
+    box-shadow: 0 0 1px 0px #ddd, 0px 0px 17px 4px #fff;
+    border-radius: 10px;
+}
+
