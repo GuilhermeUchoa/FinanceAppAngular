@@ -1,4 +1,16 @@
+
+
+
+
 <div class="container">
+
+    <div style="text-align: center;">
+        <label for="searchTipo" style="padding: 5px;">Buscar</label>
+        <input type="text" name="searchTipo" id="" [(ngModel)]="TermSearch" (change)="searchTerm(TermSearch)">
+
+    </div>
+    <br>
+
     <table class="table table-hover">
         <thead>
             <tr>
@@ -16,8 +28,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of portfolio let i=index" class="tr.tbody">
-                <td>{{i}}</td>
+            @for (item of portfolio; track $index) {
+            <tr class="tr.tbody">
+                <td>{{$index}}</td>
 
                 <!-- Button modal -->
                 <td id="ativo">
@@ -67,12 +80,10 @@
                 <td>{{item.cotacao|currency:'BRL'}}</td>
 
 
-                <td>
-                    {{item.quantidade}}
-                </td>
+                <td>{{item.quantidade}}</td>
 
                 <!-- Valor calculado -->
-                <td>{{item.quantidade*item.cotacao|currency:'BRL'}}</td>
+                <td>{{item.valor|currency:'BRL'}}</td>
 
                 <!-- porcentagem -->
                 <td [style]="item.valor/valorTotalCarteira*100 < item.meta ? 'color:red' : ''">
@@ -87,6 +98,7 @@
                         <span class="input-group-text">%</span>
                     </div>
                 </td>
+
                 <!-- Status -->
                 <td style="align-items: center;">
                     <select (change)="atualizarStatus($event,item.id)" class="form-select form-select-sm"
@@ -98,17 +110,23 @@
                     </select>
                 </td>
 
+                <!-- Tipo -->
                 <td>{{item.tipo|uppercase}}</td>
-                <td class="aporte">0</td>
+
+                <!-- Aporte -->
+                <td class="aporte">{{item.aporte|currency:'BRL'}}</td>
+
+                <!-- Cota -->
                 <td>
                     <div class="input-group input-group-sm mb-3">
                         <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" value="0"
-                            name="cota" step="1" (change)="calculoGeral($event)"
+                            name="cota" step="1" (change)="calculoCotas(item.id,$event)"
                             style="text-align: center; width: 50px;">
 
                     </div>
                 </td>
             </tr>
+            }
         </tbody>
         <tfoot>
             <tr>
@@ -128,7 +146,7 @@
                 </th>
                 <th scope="col">Status</th>
                 <th scope="col">Tipo</th>
-                <th scope="col" id="aporteValorTotal">R$ 0</th>
+                <th scope="col" id="aporteValorTotal">{{valorTotalAporte|currency:'BRL'}}</th>
                 <th scope="col">Cotas</th>
 
             </tr>

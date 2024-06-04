@@ -3,254 +3,275 @@
     {
       "ativo": "B3SA3",
       "comentarios": " Aguardar oque a suno vai dizer\n\nLiquidez:\n- Liquidez Corrente (AC/PC) = 1,46 com historico bom.\n- (P/A) =  0.58 Significa que o passivo é menor que o ativo. logo há liquidez\n\nlucratividade:\n-MargemBruta e liquida cairam muito no ultimo ano, pois houve aumento do custo, porem são extremamente atrativas, margem bruta de 80% e margem liquida de 40%\n\n\nEndividamento:\nÉ uma empresa com indicadores de divida negativo, sua divida liquida é negativa, pois há dinheiro em caixa.\n\nResumo:\nEmpresa com boa liquidez (consegue pagar suas dividas), lucratividade com margens muito interessantes, com pouquissimas dividas (mais a longo prazo). Lucro liquido crescente\n\n\n",
-      "cotacao": 11.2,
+      "cotacao": 10.7,
       "id": "2",
-      "meta": 1.5,
-      "quantidade": 49,
+      "meta": 1.6,
+      "quantidade": 54,
       "status": "comprar",
       "tipo": "acao",
       "user_id": 1,
-      "valor": 548.8
+      "valor": 548.8,
+      "aporte": 0
     },
     {
       "ativo": "BBAS3",
       "comentarios": " Liquidez:\nliquidez corrente (ac/pc) = 14 com tendencia de baixa, porem nao significa algo ruim pois vem de muito dinheiro em caixa e agora tem reduzido\npassivo/ativo = 0.92, empresa com boa quantidade de ativo, tem liquidez para pagar suas contas, grande parte de seu capital vem do passivo exigivel quase nada dos socios\n\nRentabilidades/lucratividade:\n\nÉ uma empresa com muito custo, ficar de olho, margens baixas 30 bruto e 12 liquido\n\nEndividamento:\nNão consegui avaliar\n",
-      "cotacao": 27.84,
+      "cotacao": 27.12,
       "id": "3",
       "meta": 0.8,
-      "quantidade": 20,
-      "status": "aguardar",
+      "quantidade": 40,
+      "status": "comprar",
       "tipo": "acao",
       "user_id": 1,
-      "valor": 556.8
+      "valor": 556.8,
+      "aporte": 0
     },
     {
       "ativo": "EGIE3",
       "comentarios": " Liquidez:\nhá liquidez\nliquidez corrente: 1,09\n\nRentabilidades/lucratividade:\nmargem bruta crescente, margem liquida dificil dizer\n\nEndividamento:\n0,76 de sua origem de capital é de terceiros\nsua divida nos ultimos dois anos vem caindo, porem é algo a se olhar pois é 2x maior que ebit é necessario cuidado para nao perder a mao, esta na media do setor\n\nreceita crescente\n",
-      "cotacao": 40.69,
+      "cotacao": 43.34,
       "id": "4",
       "meta": 2.5,
       "quantidade": 26,
       "status": "aguardar",
       "tipo": "acao",
       "user_id": 1,
-      "valor": 1057.94
+      "valor": 1057.94,
+      "aporte": 0
     },
     {
       "ativo": "ITSA4",
       "comentarios": "Aguardar oque a suno vai dizer\n\nLiquidez:\nBoa liquidez 1,65\n\nRentabilidades/lucratividade:\nmargem bruta constante, margem liquida crescente\n\nEndividamento:\nseu financiamento de grande parte dos socios\npouquissima divida\n\nlucro liquido crescente\nempresa com muito investimento",
-      "cotacao": 9.62,
+      "cotacao": 9.71,
       "id": "5",
       "meta": 1.5,
       "quantidade": 70,
       "status": "aguardar",
       "tipo": "acao",
       "user_id": 1,
-      "valor": 673.4
+      "valor": 673.4,
+      "aporte": 0
     },
     {
       "ativo": "KLBN11",
       "comentarios": "   Gosto muito do negocio, porem é necessario avaliar a suzano que é lider de mercado\n\nLiquidez:\nBastante liquidez\n\nRentabilidades/lucratividade:\nmargem bruta constante, porem de vez enquando da uns prejuizos tensos, é interessante avaliar com cuidado\n\n\nEndividamento:\nFinanciado por capital de terceiros,\nempresa com bastante divida, 4x mais que seu ebitda(muito alavancada), vale a pena avaliar seus concorrentes para ver como estao\n\ncomparando com a suzano, elas se parecem muito, todo o setor tem essa divida alta",
-      "cotacao": 24.66,
+      "cotacao": 20.32,
       "id": "6",
       "meta": 9.7,
-      "quantidade": 41,
+      "quantidade": 45,
       "status": "comprar",
       "tipo": "acao",
       "user_id": 1,
-      "valor": 1011.0600000000001
+      "valor": 1011.0600000000001,
+      "aporte": 0
     },
     {
       "ativo": "PETR4",
       "comentarios": "Aguardar oque a suno vai dizer",
-      "cotacao": 39.15,
+      "cotacao": 38.79,
       "id": "7",
       "meta": 7,
-      "quantidade": 23,
+      "quantidade": 27,
       "status": "vender",
       "tipo": "acao",
       "user_id": 1,
-      "valor": 900.4499999999999
+      "valor": 900.4499999999999,
+      "aporte": 0
     },
     {
       "ativo": "SANB11",
       "comentarios": "",
-      "cotacao": 26.83,
+      "cotacao": 27.75,
       "id": "8",
       "meta": 10,
       "quantidade": 30,
       "status": "comprar",
       "tipo": "acao",
       "user_id": 1,
-      "valor": 804.9
+      "valor": 804.9,
+      "aporte": 0
     },
     {
       "ativo": "TAEE11",
       "comentarios": " Estudar mais esta empresa, não aparenta esta gerando lucro\n\ncomentario",
-      "cotacao": 35.84,
+      "cotacao": 34.28,
       "id": "9",
       "meta": 10,
       "quantidade": 21,
       "status": "aguardar",
       "tipo": "acao",
       "user_id": 1,
-      "valor": 752.6400000000001
+      "valor": 752.6400000000001,
+      "aporte": 0
     },
     {
       "ativo": "VALE3",
       "comentarios": "",
-      "cotacao": 61.09,
+      "cotacao": 63.2,
       "id": "10",
       "meta": 1,
       "quantidade": 17,
       "status": "comprar",
       "tipo": "acao",
       "user_id": 1,
-      "valor": 1038.53
+      "valor": 1038.53,
+      "aporte": 0
     },
     {
       "ativo": "AMZO34",
       "comentarios": "Amazon se livrar disso logo",
-      "cotacao": 48.08,
+      "cotacao": 46.3,
       "id": "11",
       "meta": 1,
       "quantidade": 12,
       "status": "comprar",
       "tipo": "bdr",
       "user_id": 1,
-      "valor": 576.96
+      "valor": 576.96,
+      "aporte": 0
     },
     {
       "ativo": "BERK34",
       "comentarios": "",
-      "cotacao": 104.83,
+      "cotacao": 107.93,
       "id": "12",
-      "meta": 8.05,
+      "meta": 8,
       "quantidade": 5,
       "status": "comprar",
       "tipo": "bdr",
       "user_id": 1,
-      "valor": 524.15
+      "valor": 524.15,
+      "aporte": 0
     },
     {
       "ativo": "BLAK34",
       "comentarios": "Aguardar oque a suno vai dizer",
-      "cotacao": 60.54,
+      "cotacao": 61.23,
       "id": "13",
       "meta": 1,
       "quantidade": 6,
       "status": "aguardar",
       "tipo": "bdr",
       "user_id": 1,
-      "valor": 363.24
+      "valor": 363.24,
+      "aporte": 0
     },
     {
       "ativo": "BTLG11",
       "comentarios": "",
-      "cotacao": 104.8,
+      "cotacao": 100.9,
       "id": "14",
-      "meta": 8.4,
-      "quantidade": 32,
+      "meta": 9.5,
+      "quantidade": 37,
       "status": "comprar",
       "tipo": "fii",
       "user_id": 1,
-      "valor": 3353.6
+      "valor": 3353.6,
+      "aporte": 0
     },
     {
       "ativo": "HGLG11",
       "comentarios": "",
-      "cotacao": 164.5,
+      "cotacao": 162.3,
       "id": "16",
-      "meta": 5,
+      "meta": 6,
       "quantidade": 19,
-      "status": "comprar",
+      "status": "vender",
       "tipo": "fii",
       "user_id": 1,
-      "valor": 3125.5
+      "valor": 3125.5,
+      "aporte": 0
     },
     {
       "ativo": "LVBI11",
       "comentarios": "",
-      "cotacao": 118.25,
+      "cotacao": 115.2,
       "id": "17",
       "meta": 8,
-      "quantidade": 29,
+      "quantidade": 31,
       "status": "comprar",
       "tipo": "fii",
       "user_id": 1,
-      "valor": 3429.25
+      "valor": 3429.25,
+      "aporte": 0
     },
     {
       "ativo": "MFII11",
       "comentarios": "OK",
-      "cotacao": 103.95,
+      "cotacao": 102.8,
       "id": "18",
       "meta": 8.3,
-      "quantidade": 33,
-      "status": "aguardar",
-      "tipo": "fii",
-      "user_id": 1,
-      "valor": 3430.35
-    },
-    {
-      "ativo": "TRXF11",
-      "comentarios": "",
-      "cotacao": 111.18,
-      "id": "19",
-      "meta": 9.3,
-      "quantidade": 34,
-      "status": "comprar",
-      "tipo": "fii",
-      "user_id": 1,
-      "valor": 3780.1200000000003
-    },
-    {
-      "ativo": "VGIP11",
-      "comentarios": "",
-      "cotacao": 91.75,
-      "id": "20",
-      "meta": 1,
       "quantidade": 35,
       "status": "comprar",
       "tipo": "fii",
       "user_id": 1,
-      "valor": 3211.25
+      "valor": 3430.35,
+      "aporte": 0
+    },
+    {
+      "ativo": "TRXF11",
+      "comentarios": "",
+      "cotacao": 108,
+      "id": "19",
+      "meta": 9.2,
+      "quantidade": 40,
+      "status": "comprar",
+      "tipo": "fii",
+      "user_id": 1,
+      "valor": 3780.1200000000003,
+      "aporte": 0
+    },
+    {
+      "ativo": "VGIP11",
+      "comentarios": "",
+      "cotacao": 90.64,
+      "id": "20",
+      "meta": 1,
+      "quantidade": 42,
+      "status": "comprar",
+      "tipo": "fii",
+      "user_id": 1,
+      "valor": 3211.25,
+      "aporte": 0
     },
     {
       "ativo": "XPLG11",
       "comentarios": "",
-      "cotacao": 106.76,
+      "cotacao": 104.07,
       "id": "21",
       "meta": 1,
-      "quantidade": 31,
+      "quantidade": 33,
       "status": "vender",
       "tipo": "fii",
       "user_id": 1,
-      "valor": 3309.56
+      "valor": 3309.56,
+      "aporte": 0
     },
     {
       "ativo": "XPML11",
       "comentarios": "",
-      "cotacao": 115.9,
+      "cotacao": 113.87,
       "id": "22",
       "meta": 1,
-      "quantidade": 29,
+      "quantidade": 35,
       "status": "aguardar",
       "tipo": "fii",
       "user_id": 1,
-      "valor": 3361.1000000000004
+      "valor": 3361.1000000000004,
+      "aporte": 0
     },
     {
       "ativo": "LBRD34",
       "comentarios": "novo comentario salvoo",
-      "cotacao": 0,
+      "cotacao": 23.74,
       "id": "23",
       "meta": 2,
       "quantidade": 3,
       "status": "comprar",
       "tipo": "bdr",
       "user_id": 1,
-      "valor": 0
+      "valor": 0,
+      "aporte": 0
     },
     {
       "ativo": "XPML12",
@@ -262,7 +283,8 @@
       "status": "vender",
       "tipo": "fii",
       "user_id": 1,
-      "valor": 0
+      "valor": 0,
+      "aporte": 0
     },
     {
       "ativo": "Tesouro Prefixado 2031",
@@ -270,11 +292,12 @@
       "cotacao": 1,
       "id": "28",
       "meta": 1,
-      "quantidade": 1507,
-      "status": "vender",
+      "quantidade": 1479.88,
+      "status": "aguardar",
       "tipo": "renda fixa",
       "user_id": 1,
-      "valor": 1507
+      "valor": 1507,
+      "aporte": 0
     }
   ]
 }

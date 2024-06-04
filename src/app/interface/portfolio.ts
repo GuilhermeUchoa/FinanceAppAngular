@@ -8,5 +8,6 @@ export interface Portfolio {
     "status": string,
     "tipo": string,
     "user_id": number,
-    "valor": number
+    "valor": number,
+    "aporte":number,
 }
