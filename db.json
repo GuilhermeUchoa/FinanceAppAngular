@@ -3,7 +3,7 @@
     {
       "ativo": "B3SA3",
       "comentarios": " Aguardar oque a suno vai dizer\n\nLiquidez:\n- Liquidez Corrente (AC/PC) = 1,46 com historico bom.\n- (P/A) =  0.58 Significa que o passivo é menor que o ativo. logo há liquidez\n\nlucratividade:\n-MargemBruta e liquida cairam muito no ultimo ano, pois houve aumento do custo, porem são extremamente atrativas, margem bruta de 80% e margem liquida de 40%\n\n\nEndividamento:\nÉ uma empresa com indicadores de divida negativo, sua divida liquida é negativa, pois há dinheiro em caixa.\n\nResumo:\nEmpresa com boa liquidez (consegue pagar suas dividas), lucratividade com margens muito interessantes, com pouquissimas dividas (mais a longo prazo). Lucro liquido crescente\n\n\n",
-      "cotacao": 10.7,
+      "cotacao": 10.71,
       "id": "2",
       "meta": 1.6,
       "quantidade": 54,
@@ -16,7 +16,7 @@
     {
       "ativo": "BBAS3",
       "comentarios": " Liquidez:\nliquidez corrente (ac/pc) = 14 com tendencia de baixa, porem nao significa algo ruim pois vem de muito dinheiro em caixa e agora tem reduzido\npassivo/ativo = 0.92, empresa com boa quantidade de ativo, tem liquidez para pagar suas contas, grande parte de seu capital vem do passivo exigivel quase nada dos socios\n\nRentabilidades/lucratividade:\n\nÉ uma empresa com muito custo, ficar de olho, margens baixas 30 bruto e 12 liquido\n\nEndividamento:\nNão consegui avaliar\n",
-      "cotacao": 27.12,
+      "cotacao": 27.23,
       "id": "3",
       "meta": 0.8,
       "quantidade": 40,
@@ -29,7 +29,7 @@
     {
       "ativo": "EGIE3",
       "comentarios": " Liquidez:\nhá liquidez\nliquidez corrente: 1,09\n\nRentabilidades/lucratividade:\nmargem bruta crescente, margem liquida dificil dizer\n\nEndividamento:\n0,76 de sua origem de capital é de terceiros\nsua divida nos ultimos dois anos vem caindo, porem é algo a se olhar pois é 2x maior que ebit é necessario cuidado para nao perder a mao, esta na media do setor\n\nreceita crescente\n",
-      "cotacao": 43.34,
+      "cotacao": 44.08,
       "id": "4",
       "meta": 2.5,
       "quantidade": 26,
@@ -42,7 +42,7 @@
     {
       "ativo": "ITSA4",
       "comentarios": "Aguardar oque a suno vai dizer\n\nLiquidez:\nBoa liquidez 1,65\n\nRentabilidades/lucratividade:\nmargem bruta constante, margem liquida crescente\n\nEndividamento:\nseu financiamento de grande parte dos socios\npouquissima divida\n\nlucro liquido crescente\nempresa com muito investimento",
-      "cotacao": 9.71,
+      "cotacao": 9.83,
       "id": "5",
       "meta": 1.5,
       "quantidade": 70,
@@ -55,7 +55,7 @@
     {
       "ativo": "KLBN11",
       "comentarios": "   Gosto muito do negocio, porem é necessario avaliar a suzano que é lider de mercado\n\nLiquidez:\nBastante liquidez\n\nRentabilidades/lucratividade:\nmargem bruta constante, porem de vez enquando da uns prejuizos tensos, é interessante avaliar com cuidado\n\n\nEndividamento:\nFinanciado por capital de terceiros,\nempresa com bastante divida, 4x mais que seu ebitda(muito alavancada), vale a pena avaliar seus concorrentes para ver como estao\n\ncomparando com a suzano, elas se parecem muito, todo o setor tem essa divida alta",
-      "cotacao": 20.32,
+      "cotacao": 20.21,
       "id": "6",
       "meta": 9.7,
       "quantidade": 45,
@@ -68,7 +68,7 @@
     {
       "ativo": "PETR4",
       "comentarios": "Aguardar oque a suno vai dizer",
-      "cotacao": 38.79,
+      "cotacao": 38.15,
       "id": "7",
       "meta": 7,
       "quantidade": 27,
@@ -81,7 +81,7 @@
     {
       "ativo": "SANB11",
       "comentarios": "",
-      "cotacao": 27.75,
+      "cotacao": 27.2,
       "id": "8",
       "meta": 10,
       "quantidade": 30,
@@ -94,7 +94,7 @@
     {
       "ativo": "TAEE11",
       "comentarios": " Estudar mais esta empresa, não aparenta esta gerando lucro\n\ncomentario",
-      "cotacao": 34.28,
+      "cotacao": 34.34,
       "id": "9",
       "meta": 10,
       "quantidade": 21,
@@ -107,7 +107,7 @@
     {
       "ativo": "VALE3",
       "comentarios": "",
-      "cotacao": 63.2,
+      "cotacao": 61.24,
       "id": "10",
       "meta": 1,
       "quantidade": 17,
@@ -120,7 +120,7 @@
     {
       "ativo": "AMZO34",
       "comentarios": "Amazon se livrar disso logo",
-      "cotacao": 46.3,
+      "cotacao": 47.3,
       "id": "11",
       "meta": 1,
       "quantidade": 12,
@@ -133,7 +133,7 @@
     {
       "ativo": "BERK34",
       "comentarios": "",
-      "cotacao": 107.93,
+      "cotacao": 108.11,
       "id": "12",
       "meta": 8,
       "quantidade": 5,
@@ -146,7 +146,7 @@
     {
       "ativo": "BLAK34",
       "comentarios": "Aguardar oque a suno vai dizer",
-      "cotacao": 61.23,
+      "cotacao": 63.34,
       "id": "13",
       "meta": 1,
       "quantidade": 6,
@@ -172,7 +172,7 @@
     {
       "ativo": "HGLG11",
       "comentarios": "",
-      "cotacao": 162.3,
+      "cotacao": 161.47,
       "id": "16",
       "meta": 6,
       "quantidade": 19,
@@ -185,7 +185,7 @@
     {
       "ativo": "LVBI11",
       "comentarios": "",
-      "cotacao": 115.2,
+      "cotacao": 115.28,
       "id": "17",
       "meta": 8,
       "quantidade": 31,
@@ -198,7 +198,7 @@
     {
       "ativo": "MFII11",
       "comentarios": "OK",
-      "cotacao": 102.8,
+      "cotacao": 102.85,
       "id": "18",
       "meta": 8.3,
       "quantidade": 35,
@@ -211,7 +211,7 @@
     {
       "ativo": "TRXF11",
       "comentarios": "",
-      "cotacao": 108,
+      "cotacao": 108.19,
       "id": "19",
       "meta": 9.2,
       "quantidade": 40,
@@ -224,7 +224,7 @@
     {
       "ativo": "VGIP11",
       "comentarios": "",
-      "cotacao": 90.64,
+      "cotacao": 91.15,
       "id": "20",
       "meta": 1,
       "quantidade": 42,
@@ -237,7 +237,7 @@
     {
       "ativo": "XPLG11",
       "comentarios": "",
-      "cotacao": 104.07,
+      "cotacao": 103.88,
       "id": "21",
       "meta": 1,
       "quantidade": 33,
@@ -250,7 +250,7 @@
     {
       "ativo": "XPML11",
       "comentarios": "",
-      "cotacao": 113.87,
+      "cotacao": 113.97,
       "id": "22",
       "meta": 1,
       "quantidade": 35,
@@ -263,22 +263,22 @@
     {
       "ativo": "LBRD34",
       "comentarios": "novo comentario salvoo",
-      "cotacao": 23.74,
+      "cotacao": 23.2,
       "id": "23",
       "meta": 2,
       "quantidade": 3,
       "status": "comprar",
       "tipo": "bdr",
       "user_id": 1,
-      "valor": 0,
+      "valor": 50,
       "aporte": 0
     },
     {
       "ativo": "XPML12",
       "comentarios": "Testando esse novo comentario com mensagem box",
-      "cotacao": 0,
+      "cotacao": 0.09,
       "id": "24",
-      "meta": 1,
+      "meta": 0,
       "quantidade": 9,
       "status": "vender",
       "tipo": "fii",

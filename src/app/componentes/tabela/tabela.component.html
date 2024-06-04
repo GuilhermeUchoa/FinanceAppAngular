@@ -132,10 +132,14 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Ativo</th>
-                <th scope="col">Cotacao</th>
+                
+                <th scope="col" (click)="getCotacoesLive()">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="refresh"></mat-icon>
+                </th>
+
                 <th scope="col">Quantidade</th>
                 <th scope="col">{{valorTotalCarteira|currency:'BRL'}}</th>
-                <th scope="col">Porcentagem</th>
+                <th scope="col">{{porcentagemGeralPorTipo| number : '1.2-2'}}%</th>
                 <th scope="col">
                     <div class="input-group input-group-sm mb-3">
                         <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)"

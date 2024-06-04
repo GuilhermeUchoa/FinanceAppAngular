@@ -9,7 +9,8 @@ import { Portfolio } from '../../interface/portfolio';
 })
 export class PortfolioService {
 
-  private apiLink: string = "http://localhost:3000/carteira";
+  private apiLink: string = "http://localhost:3000/carteira"
+  private apiLinkCotacao:string = "http://127.0.0.1:5000/?ativo="
 
 
   constructor(private _httpClient: HttpClient) { }
@@ -45,5 +46,12 @@ export class PortfolioService {
     }
     const urlSearchTipo:string = `${this.apiLink}?q=${term.toLocaleLowerCase()}`
     return this._httpClient.get<Portfolio[]>(urlSearchTipo)
+  }
+
+  cotacao(ativo:any):Observable<any> {
+    let link:string = `${this.apiLinkCotacao}${ativo}`
+  
+    return this._httpClient.get<any>(link)
+   
   }
 }
