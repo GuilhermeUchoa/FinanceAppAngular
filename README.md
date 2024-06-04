@@ -1,10 +1,15 @@
 # Metas
 
 [x] - Criar Buscador
+
 [x] - criar uma api que manda as cotacoes
+
 [] - Arrumar Porcentagens e metas bugadas no buscador
+
 [] - Se nao tiver como atuaizaliar entao devo criar um novo ativo, criar essa feature
+
 [] - criar um back end com django restFramework
+
 
 
 # FinanceAppAngular
