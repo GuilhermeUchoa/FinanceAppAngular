@@ -57,8 +57,8 @@ export class ListarPortfolioComponent {
       this.valorTotal()
       //Porcentagem Total
       this.porcentagemTotal()
-      //Meta Total
-      this.metaTotal()
+      //metaTotalCarteira ao iniciar o programa
+      this.metaTotalCarteira = data.reduce((previousValue, currentValue) => previousValue + currentValue.meta, 0)
     })
   }
 
@@ -85,25 +85,24 @@ export class ListarPortfolioComponent {
   }
 
   atualizarMeta(event: any, id: any): void {
+    //Atualiza na api a meta de um ativo individual
     this._PortfolioService.getAtivo(id).subscribe((data) => {
       let portfolio = data
       portfolio.meta = event.target.value
       this._PortfolioService.atualizarAtivo(id, portfolio).subscribe()
 
-      //Atualizar Meta total a cada atualizacao de meta
-      this.metaTotal()
+      //Atualizar metaTotalCarteira a cada atualizacao de meta, substuindo this.portifolio.meta atual, do ativo especifico, pelo event.target.value
+      this.portfolio.filter((data) => {
+        if (data.id == id) {
+          data.meta = parseFloat(event.target.value)
+          this.metaTotalCarteira = this.portfolio.reduce((accumulator, currentValue) => accumulator + currentValue.meta, 0)
+        }
+
+      })
+
     })
 
   }
-
-  metaTotal(): void {
-    // Calcula a meta total, Esta com atraso na atualização, para arrumar precisa transformar esses totais em Objetos se nao nao vai funcionar
-    // console.log(this.portfolio) para analisar olhe esse console
-    this._PortfolioService.listarPortfolio().subscribe((data) => {
-      this.metaTotalCarteira = data.reduce((previousValue, currentValue) => previousValue + currentValue.meta, 0)
-    })
-  }
-
 
   atualizarStatus(event: any, id: any): void {
     //Atualizar status
@@ -123,20 +122,49 @@ export class ListarPortfolioComponent {
 
   calculoCotas(event: any, id: any): void {
     //Calculo Cotas e aporte
-		this.portfolio.filter((data) => {
-			if (data.id == id) {
-				data.valor = (data.cotacao * (data.quantidade + parseInt(event.target.value)))
-				data.aporte = data.cotacao * parseInt(event.target.value)
+    this.portfolio.filter((data) => {
+      if (data.id == id) {
+        data.valor = (data.cotacao * (data.quantidade + parseInt(event.target.value)))
+        data.aporte = data.cotacao * parseInt(event.target.value)
 
-				//Calcular o valor total do aporte
-				this.valorTotalAporte = this.portfolio.reduce((accumulator, currentValue) => accumulator + currentValue.aporte, 0)
-				this.valorTotal()
 
-			}
-		})
-   }
+        //Calcular o valor total do aporte
+        this.valorTotalAporte = this.portfolio.reduce((accumulator, currentValue) => accumulator + currentValue.aporte, 0)
+        this.valorTotal()
 
-  searchTerm(event: any): void { }
+        //Porcentagem de cada ativo
+        this.porcentagemDeCadaAtivo()
+      }
+    })
+  }
+
+  porcentagemDeCadaAtivo(): void {
+    //Porcentagem dos ativos
+    this.portfolio.forEach((data) => {
+      data.porcentagem = data.valor / this.valorTotalCarteira
+    })
+  }
+
+  searchTerm(event: any): void {
+    //Buscador
+    let word: string = (event.target.value).toLowerCase()
+    this._PortfolioService.searchApi(word).subscribe((data) => {
+      this.portfolio = data
+
+      //Quantidade Total
+      this.quantidadeTotal()
+      //Valor Total
+      this.valorTotal()
+      //Porcentagem Total de cada classe
+      this.porcentagemTotal()
+      //metaTotalCarteira ao iniciar o programa
+      this.metaTotalCarteira = data.reduce((previousValue, currentValue) => previousValue + currentValue.meta, 0)
+      //Porcentagem de cada ativo para ao escolher uma classe eles fiquem balanceados
+      this.porcentagemDeCadaAtivo()
+    })
+
+
+  }
 
 
 }

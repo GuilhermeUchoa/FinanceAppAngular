@@ -32,5 +32,10 @@ export class PortfolioService {
     return this._httpClient.put<Portfolio>(linkAtualizar,portfolio)
   }
 
+  searchApi(word:any):Observable<Portfolio[]>{
+    let searchLink:string = `${this.apiDjangoRestLink}?search=${word}`
+    return this._httpClient.get<Portfolio[]>(searchLink)
+  }
+
   
 }
