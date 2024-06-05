@@ -16,6 +16,7 @@ class PortfolioModels(models.Model):
         ("rendaFixa","rendaFixa"),
     )
 
+
     ativo = models.CharField(max_length=250, unique=True)
     cotacao = models.FloatField(blank=True, null=True)
     porcentagem = models.FloatField(blank=True, null=True)

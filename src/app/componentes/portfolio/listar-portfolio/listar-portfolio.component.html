@@ -1,17 +1,14 @@
-
-
-
-
 <div class="container">
-
+    
     <div style="text-align: center;">
         <label for="searchTipo" style="padding: 5px;">Buscar</label>
-        <input type="text" name="searchTipo" id="" [(ngModel)]="TermSearch" (change)="searchTerm(TermSearch)">
+        <input type="text" name="searchTipo" id="" (change)="searchTerm($event)">
 
     </div>
     <br>
 
-    <table class="table table-hover">
+    <table class="table table-hover"> 
+        
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -86,8 +83,7 @@
                 <td>{{item.valor|currency:'BRL'}}</td>
 
                 <!-- porcentagem -->
-                <td [style]="item.valor/valorTotalCarteira*100 < item.meta ? 'color:red' : ''">
-                    {{item.valor/valorTotalCarteira*100 |number : '1.2-2'}}%</td>
+                <td [style]="item.porcentagem*100 < item.meta ? 'color:red' : ''">{{item.porcentagem|percent:"1.0-2"}}</td>
 
                 <!-- input Meta -->
                 <td>
@@ -120,7 +116,7 @@
                 <td>
                     <div class="input-group input-group-sm mb-3">
                         <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" value="0"
-                            name="cota" step="1" (change)="calculoCotas(item.id,$event)"
+                            name="cota" step="1" (change)="calculoCotas($event,item.id)"
                             style="text-align: center; width: 50px;">
 
                     </div>
@@ -133,17 +129,17 @@
                 <th scope="col">#</th>
                 <th scope="col">Ativo</th>
                 
-                <th scope="col" (click)="getCotacoesLive()">
+                <th scope="col">
                     <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="refresh"></mat-icon>
                 </th>
 
-                <th scope="col">Quantidade</th>
+                <th scope="col">{{quantidadeTotalCarteira}}</th>
                 <th scope="col">{{valorTotalCarteira|currency:'BRL'}}</th>
-                <th scope="col">{{porcentagemGeralPorTipo| number : '1.2-2'}}%</th>
+                <th scope="col">{{porcentagemTotalCarteira|percent:'1.0-2'}}</th>
                 <th scope="col">
                     <div class="input-group input-group-sm mb-3">
                         <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)"
-                            [value]="metaTotalCarteira | number : '1.2-2'" name="meta"
+                            [value]="metaTotalCarteira | number : '1.0-2'" name="meta"
                             style="text-align: center; width: 80px; font-weight: 900;">
                         <span class="input-group-text">%</span>
                     </div>

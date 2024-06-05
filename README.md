@@ -4,11 +4,12 @@
 
 [x] - criar uma api que manda as cotacoes
 
+[x] - criar um back end com django restFramework
+
 [ ] - Arrumar Porcentagens e metas bugadas no buscador
 
 [ ] - Se nao tiver como atuaizaliar entao devo criar um novo ativo, criar essa feature
 
-[ ] - criar um back end com django restFramework
 
 
 

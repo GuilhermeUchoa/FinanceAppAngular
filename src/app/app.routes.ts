@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './page/home/home.component';
-import { PortfolioComponent } from './page/portfolio/portfolio.component';
-import { ReceitasDespesasComponent } from './page/receitas-despesas/receitas-despesas.component';
+import { PortfolioComponent } from './componentes/portfolio/portfolio.component';
+import { ListarPortfolioComponent } from './componentes/portfolio/listar-portfolio/listar-portfolio.component';
+
 
 
 export const routes: Routes = [
-    {path:'', component:HomeComponent},
-    {path:'portfolio', component:PortfolioComponent},
-    {path:'receitasdespesas', component:ReceitasDespesasComponent}
+
+    {path:'',component:PortfolioComponent, children:[
+        {path:'',component:ListarPortfolioComponent},
+    ]}
 ];

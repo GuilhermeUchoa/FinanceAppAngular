@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PainelComponent } from './painel.component';
+import { ListarPortfolioComponent } from './listar-portfolio.component';
 
-describe('PainelComponent', () => {
-  let component: PainelComponent;
-  let fixture: ComponentFixture<PainelComponent>;
+describe('ListarPortfolioComponent', () => {
+  let component: ListarPortfolioComponent;
+  let fixture: ComponentFixture<ListarPortfolioComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PainelComponent]
+      imports: [ListarPortfolioComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(PainelComponent);
+    fixture = TestBed.createComponent(ListarPortfolioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
