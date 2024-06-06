@@ -8,6 +8,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { routes } from '../../../app.routes';
+import { timeInterval, timeout } from 'rxjs';
 
 @Component({
   selector: 'app-listar-portfolio',
@@ -31,6 +33,7 @@ export class ListarPortfolioComponent {
   porcentagemTotalCarteira: number = 0
   metaTotalCarteira: number = 0
   valorTotalAporte: number = 0
+  
 
   constructor(
     private _PortfolioService: PortfolioService,
@@ -164,6 +167,28 @@ export class ListarPortfolioComponent {
     })
 
 
+  }
+  atualizandoCotacao = false
+  atualizarCotacoesDaCarteira(): void {
+    // Atualiza cotacoes, porem preciso ajustar para que assim atualizar a pagina ser atualizada
+    this.atualizandoCotacao = true
+    this._PortfolioService.atualizarCotacao().subscribe((data)=>{
+      console.log(data)
+      window.location.reload()
+    })
+    
+  }
+
+  atualizandoFile = false
+  fileB3(event: any): void {
+    this.atualizandoFile = true
+    let file: any = event.target.files.item(0)
+    if (file) {
+      this._PortfolioService.uploadFile(file).subscribe((data)=>{
+        console.log(data)
+        window.location.reload()
+      },(error)=>{console.log(error)})
+    }
   }
 
 

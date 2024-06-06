@@ -24,5 +24,11 @@ table tfoot tr{
     border-radius: 10px;
 }
 
+.fileupload {
+    text-align: center;
+    width: 440px;
+    padding: 30px;
+}
+
 
 

@@ -16,16 +16,15 @@ class PortfolioModels(models.Model):
         ("rendaFixa","rendaFixa"),
     )
 
-
     ativo = models.CharField(max_length=250, unique=True)
     cotacao = models.FloatField(blank=True, null=True)
     porcentagem = models.FloatField(blank=True, null=True)
     meta = models.FloatField(blank=True, null=True)
     quantidade = models.IntegerField(blank=True, null=True, default=0)
-    status = models.CharField(max_length=250,choices=StatusToBuy)
+    status = models.CharField(max_length=250,choices=StatusToBuy, default="comprar")
     tipo = models.CharField(max_length=250,choices=TIPO)
     valor = models.FloatField(blank=True, null=True, default=0)
-    aporte = models.IntegerField(blank=True, null=True)
+    aporte = models.IntegerField(blank=True, null=True, default=0)
     comentarios = models.TextField(blank=True, null=True)
 
 

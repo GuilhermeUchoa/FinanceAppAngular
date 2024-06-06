@@ -1,5 +1,5 @@
 <div class="container">
-    
+
     <div style="text-align: center;">
         <label for="searchTipo" style="padding: 5px;">Buscar</label>
         <input type="text" name="searchTipo" id="" (change)="searchTerm($event)">
@@ -7,8 +7,8 @@
     </div>
     <br>
 
-    <table class="table table-hover"> 
-        
+    <table class="table table-hover">
+
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -26,6 +26,7 @@
         </thead>
         <tbody>
             @for (item of portfolio; track $index) {
+
             <tr class="tr.tbody">
                 <td>{{$index}}</td>
 
@@ -83,7 +84,8 @@
                 <td>{{item.valor|currency:'BRL'}}</td>
 
                 <!-- porcentagem -->
-                <td [style]="item.porcentagem*100 < item.meta ? 'color:red' : ''">{{item.porcentagem|percent:"1.0-2"}}</td>
+                <td [style]="item.porcentagem*100 < item.meta ? 'color:red' : ''">{{item.porcentagem|percent:"1.0-2"}}
+                </td>
 
                 <!-- input Meta -->
                 <td>
@@ -122,15 +124,29 @@
                     </div>
                 </td>
             </tr>
+
             }
+
         </tbody>
         <tfoot>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Ativo</th>
-                
+
                 <th scope="col">
-                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="refresh"></mat-icon>
+                    @if (!atualizandoCotacao) {
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="refresh"
+                        (click)="atualizarCotacoesDaCarteira()"></mat-icon>
+
+                    }
+                    @else {
+
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+
+                    }
+
                 </th>
 
                 <th scope="col">{{quantidadeTotalCarteira}}</th>
@@ -153,3 +169,21 @@
         </tfoot>
     </table>
 </div>
+
+
+<br>
+@if (!atualizandoFile) {
+    <div class="container mb-3 fileupload">
+        <label for="formFile" class="form-label">Coloque sua carteira B3 .XLSX</label>
+        <input class="form-control" type="file" id="formFile" (change)="fileB3($event)" multiple="false" accept=".xlsx">
+        
+    </div>
+
+    }
+    @else {
+
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+
+    }
