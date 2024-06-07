@@ -1,8 +1,7 @@
-import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Portfolio } from '../../interface/portfolio';
-
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +13,11 @@ export class PortfolioService {
   private apiDjangoRestAtualizarCotacao = "http://127.0.0.1:8000/api/atualizarCotacao/"
 
 
-  constructor(private _httpClient: HttpClient) { }
+  constructor(
+    private _httpClient: HttpClient,
+  ) { }
 
-
+  
   //Listar Portfolio
   listarPortfolio(): Observable<Portfolio[]> {
     return this._httpClient.get<Portfolio[]>(`${this.apiDjangoRestLink}?format=json`)
@@ -46,6 +47,8 @@ export class PortfolioService {
   }
 
   uploadFile(file: File): Observable<HttpEvent<any>> {
+
+
 
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);

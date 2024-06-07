@@ -33,7 +33,7 @@ export class ListarPortfolioComponent {
   porcentagemTotalCarteira: number = 0
   metaTotalCarteira: number = 0
   valorTotalAporte: number = 0
-  
+
 
   constructor(
     private _PortfolioService: PortfolioService,
@@ -58,6 +58,8 @@ export class ListarPortfolioComponent {
       this.quantidadeTotal()
       //Valor Total
       this.valorTotal()
+      //Porcentagem de cada ativo
+      this.porcentagemDeCadaAtivo()
       //Porcentagem Total
       this.porcentagemTotal()
       //metaTotalCarteira ao iniciar o programa
@@ -108,20 +110,29 @@ export class ListarPortfolioComponent {
   }
 
   atualizarStatus(event: any, id: any): void {
-    //Atualizar status
-    let ativo: any
+    //Atualizar status para api
     this._PortfolioService.getAtivo(id).subscribe((response) => {
-      ativo = response
+      
+      let ativo = response
       if (event.target.value == 1) {
         ativo.status = 'comprar';
+
       } if (event.target.value == 2) {
         ativo.status = 'aguardar'
+
       } if (event.target.value == 3) {
         ativo.status = 'vender'
+        
       }
+
+      //Muda a cor de forma iterativa
+      this.portfolio.filter((x)=>{x.id == id? x.status = ativo.status:""})
+
       this._PortfolioService.atualizarAtivo(id, ativo).subscribe()
+
     })
   }
+
 
   calculoCotas(event: any, id: any): void {
     //Calculo Cotas e aporte
@@ -172,11 +183,11 @@ export class ListarPortfolioComponent {
   atualizarCotacoesDaCarteira(): void {
     // Atualiza cotacoes, porem preciso ajustar para que assim atualizar a pagina ser atualizada
     this.atualizandoCotacao = true
-    this._PortfolioService.atualizarCotacao().subscribe((data)=>{
+    this._PortfolioService.atualizarCotacao().subscribe((data) => {
       console.log(data)
       window.location.reload()
     })
-    
+
   }
 
   atualizandoFile = false
@@ -184,10 +195,10 @@ export class ListarPortfolioComponent {
     this.atualizandoFile = true
     let file: any = event.target.files.item(0)
     if (file) {
-      this._PortfolioService.uploadFile(file).subscribe((data)=>{
+      this._PortfolioService.uploadFile(file).subscribe((data) => {
         console.log(data)
         window.location.reload()
-      },(error)=>{console.log(error)})
+      }, (error) => { console.log(error) })
     }
   }
 

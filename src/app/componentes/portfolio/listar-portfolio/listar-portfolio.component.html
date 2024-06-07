@@ -1,3 +1,4 @@
+
 <div class="container">
 
     <div style="text-align: center;">
@@ -28,24 +29,24 @@
             @for (item of portfolio; track $index) {
 
             <tr class="tr.tbody">
-                <td>{{$index}}</td>
+                <td >{{$index}}</td>
 
                 <!-- Button modal -->
                 <td id="ativo">
                     <!-- Button trigger modal -->
-                    <button id="buttonAtivo" *ngIf=" item.status == 'comprar'" type="button" class="btn btn-primary"
+                    <button id="buttonAtivo" *ngIf=" item.status == 'comprar'" type="button" class="btn btn-primary" 
                         data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal'+item.id">
                         {{item.ativo}}
                     </button>
-                    <button id="buttonAtivo" *ngIf=" item.status == 'aguardar'" type="button" class="btn btn-warning"
+                    <button id="buttonAtivo" *ngIf=" item.status == 'aguardar'" type="button" class="btn btn-warning" 
                         data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal'+item.id">
                         {{item.ativo}}
                     </button>
-                    <button id="buttonAtivo" *ngIf=" item.status == ''" type="button" class="btn btn-success"
+                    <button id="buttonAtivo" *ngIf=" item.status == ''" type="button" class="btn btn-success" 
                         data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal'+item.id">
                         {{item.ativo}}
                     </button>
-                    <button id="buttonAtivo" *ngIf=" item.status == 'vender'" type="button" class="btn btn-danger"
+                    <button id="buttonAtivo" *ngIf=" item.status == 'vender'" type="button" class="btn btn-danger"  
                         data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal'+item.id">
                         {{item.ativo}}
                     </button>
@@ -182,7 +183,7 @@
     }
     @else {
 
-    <div class="spinner-border" role="status">
+    <div class="spinner-border file" role="status">
         <span class="visually-hidden">Loading...</span>
     </div>
 
