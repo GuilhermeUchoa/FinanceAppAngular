@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { routes } from '../../../app.routes';
 import { timeInterval, timeout } from 'rxjs';
+import { PainelComponent } from '../painel/painel.component';
 
 @Component({
   selector: 'app-listar-portfolio',
@@ -21,6 +22,7 @@ import { timeInterval, timeout } from 'rxjs';
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
+    PainelComponent
   ],
   templateUrl: './listar-portfolio.component.html',
   styleUrl: './listar-portfolio.component.css'
@@ -164,17 +166,19 @@ export class ListarPortfolioComponent {
     let word: string = (event.target.value).toLowerCase()
     this._PortfolioService.searchApi(word).subscribe((data) => {
       this.portfolio = data
-
+    
       //Quantidade Total
       this.quantidadeTotal()
       //Valor Total
       this.valorTotal()
-      //Porcentagem Total de cada classe
+      //Porcentagem de cada ativo
+      this.porcentagemDeCadaAtivo()
+      //Porcentagem Total
       this.porcentagemTotal()
       //metaTotalCarteira ao iniciar o programa
       this.metaTotalCarteira = data.reduce((previousValue, currentValue) => previousValue + currentValue.meta, 0)
-      //Porcentagem de cada ativo para ao escolher uma classe eles fiquem balanceados
-      this.porcentagemDeCadaAtivo()
+
+
     })
 
 

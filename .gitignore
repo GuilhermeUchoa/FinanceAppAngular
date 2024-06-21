@@ -6,6 +6,7 @@
 /out-tsc
 /bazel-out
 
+
 # Node
 /node_modules
 npm-debug.log
@@ -41,8 +42,10 @@ testem.log
 .DS_Store
 Thumbs.db
 
-#DjangoFiles
+#Python venv
+/venv
 
+#DjangoFiles
 backEndApiFinanceApp/db.sqlite3
 backEndApiFinanceApp/media/b3/*
 backEndApiFinanceApp/db.sqlite3

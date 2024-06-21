@@ -1,0 +1,43 @@
+<mat-grid-list cols="5" rowHeight="100px">
+
+    <mat-card appearance="outlined">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-card-header>
+                <mat-card-title> Total: {{total|currency:'BRL'}}</mat-card-title>
+                <mat-card-subtitle>{{total/total|percent:"1.0-2"}}</mat-card-subtitle>
+            </mat-card-header>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-card-header>
+                <mat-card-title> Ação: {{acao|currency:'BRL'}}</mat-card-title>
+                <mat-card-subtitle>{{acao/total|percent:"1.0-2"}}</mat-card-subtitle>
+            </mat-card-header>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-card-header>
+                <mat-card-title> BDR: {{bdr|currency:'BRL'}}</mat-card-title>
+                <mat-card-subtitle>{{bdr/total|percent:"1.0-2"}}</mat-card-subtitle>
+            </mat-card-header>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-card-header>
+                <mat-card-title> FII: {{fii|currency:'BRL'}}</mat-card-title>
+                <mat-card-subtitle>{{fii/total|percent:"1.0-2"}}</mat-card-subtitle>
+            </mat-card-header>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-card-header>
+                <mat-card-title> Renda Fixa: {{rendaFixa|currency:'BRL'}}</mat-card-title>
+                <mat-card-subtitle>{{rendaFixa/total|percent:"1.0-2"}}</mat-card-subtitle>
+            </mat-card-header>
+        </mat-grid-tile>
+
+    </mat-card>
+
+</mat-grid-list>
+<hr>
+<br>
