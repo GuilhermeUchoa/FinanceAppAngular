@@ -36,3 +36,5 @@
 [x] - Arrumar Porcentagens e metas bugadas no buscador
 
 [x] - Se nao tiver como atualizaliar entao devo criar um novo ativo, criar essa feature
+
+[ ] - BackEnd Excel para carteira com erro
