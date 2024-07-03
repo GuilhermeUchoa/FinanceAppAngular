@@ -20,7 +20,7 @@ class PortfolioModels(models.Model):
     cotacao = models.FloatField(blank=True, null=True)
     porcentagem = models.FloatField(blank=True, null=True)
     meta = models.FloatField(blank=True, null=True)
-    quantidade = models.IntegerField(blank=True, null=True, default=0)
+    quantidade = models.FloatField(blank=True, null=True, default=0)
     status = models.CharField(max_length=250,choices=StatusToBuy, default="comprar")
     tipo = models.CharField(max_length=250,choices=TIPO)
     valor = models.FloatField(blank=True, null=True, default=0)
