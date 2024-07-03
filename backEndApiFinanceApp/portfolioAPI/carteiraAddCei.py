@@ -22,26 +22,23 @@ def carteiraAddCei(arquivo):
             if chave == 'rendaFixa':
                 
                 ativo = valor['Produto'].loc[i]
-                # quantidade = valor['Quantidade'].loc[i]
-                # cotacao = valor['Valor líquido'].loc[i]/valor['Quantidade'].loc[i]
-                # valor = valor['Valor líquido'].loc[i]
-                # cotacao = 1
+
 
             else:
                 ativo = valor['Código de Negociação'].loc[i]
-                quantidade = int(valor['Quantidade'].loc[i])
+       
      
-            # Realizando o save
             try:
                 Carteira.objects.filter(ativo=ativo).get()
                 if Carteira.objects.filter(ativo=ativo).get().ativo == ativo:
                     carteira = Carteira.objects.filter(ativo=ativo).get()
-                    carteira.quantidade = quantidade
+                    carteira.quantidade = valor['Quantidade'].loc[i]
                     carteira.save()
                     print(f'Ativo {ativo} atualizado')
             except:
             
                 if chave == 'rendaFixa':
+                    print(valor['Quantidade'].loc[i])
                     carteira = Carteira(
                         ativo = ativo,
                         quantidade = valor['Quantidade'].loc[i],
@@ -52,7 +49,7 @@ def carteiraAddCei(arquivo):
                 else:
                     carteira = Carteira(
                         ativo = ativo,
-                        quantidade = quantidade,
+                        quantidade = valor['Quantidade'].loc[i],
                         cotacao = 0,
                         valor = 0,
                         tipo = chave
