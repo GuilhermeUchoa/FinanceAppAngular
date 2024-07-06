@@ -35,6 +35,7 @@ export class ListarPortfolioComponent {
   porcentagemTotalCarteira: number = 0
   metaTotalCarteira: number = 0
   valorTotalAporte: number = 0
+  variacaoAnualTotalDaCarteira: number = 0
 
 
   constructor(
@@ -66,6 +67,9 @@ export class ListarPortfolioComponent {
       this.porcentagemTotal()
       //metaTotalCarteira ao iniciar o programa
       this.metaTotalCarteira = data.reduce((previousValue, currentValue) => previousValue + currentValue.meta, 0)
+      //VaricaoAnulDaCarteira
+      this.variacaoAnualCarteira()
+      
     })
   }
 
@@ -85,6 +89,10 @@ export class ListarPortfolioComponent {
 
   valorTotal(): void {
     this.valorTotalCarteira = this.portfolio.reduce((previousValue, currentValue) => previousValue + currentValue.valor, 0)
+  }
+
+  variacaoAnualCarteira(): void {
+    this.variacaoAnualTotalDaCarteira = this.portfolio.reduce((previousValue, currentValue) => previousValue + currentValue.variacaoAnual, 0)/this.portfolio.length
   }
 
   porcentagemTotal(): void {
@@ -177,6 +185,8 @@ export class ListarPortfolioComponent {
       this.porcentagemTotal()
       //metaTotalCarteira ao iniciar o programa
       this.metaTotalCarteira = data.reduce((previousValue, currentValue) => previousValue + currentValue.meta, 0)
+      //VariacaoAnual
+      this.variacaoAnualCarteira()
 
 
     })

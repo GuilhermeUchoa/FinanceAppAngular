@@ -4,6 +4,7 @@ export interface Portfolio {
     "cotacao": number,
     "meta": number,
     "porcentagem":number,
+    "variacaoAnual":number,
     "quantidade": number,
     "status": string,
     "tipo": string,

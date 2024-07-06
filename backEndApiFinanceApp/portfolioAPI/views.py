@@ -36,20 +36,24 @@ def atualizarCotacao(request):
             data_atual = date.today() - timedelta(days=sexta)
         else:
             data_atual = date.today()
-        
-        
+
+    
         df = pd.DataFrame(round(yf.download([i.ativo+'.SA' for i in Carteira.objects.filter().exclude(tipo='rendaFixa')],
-                                            start= data_atual,
+                                            start= f"{date.today().year}-01-01",
+                                            end= data_atual,
                                             threads=True)['Close'],2))
+        
         df.fillna(0,inplace=True)
 
         for i in df:
             
             ativo = str(i[:-3])
             cotacao = df[i][-1]
+            cotacaoDoInicioDoAno = df[i][0]
             carteira = get_object_or_404(Carteira,ativo=ativo)
             carteira.cotacao = cotacao
             carteira.valor = cotacao * carteira.quantidade
+            carteira.variacaoAnual = (cotacao/cotacaoDoInicioDoAno - 1)
             carteira.save()
     except:
         pass

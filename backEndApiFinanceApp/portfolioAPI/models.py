@@ -19,6 +19,7 @@ class PortfolioModels(models.Model):
     ativo = models.CharField(max_length=250, unique=True)
     cotacao = models.FloatField(blank=True, null=True)
     porcentagem = models.FloatField(blank=True, null=True)
+    variacaoAnual = models.FloatField(blank=True, null=True)
     meta = models.FloatField(blank=True, null=True)
     quantidade = models.FloatField(blank=True, null=True, default=0)
     status = models.CharField(max_length=250,choices=StatusToBuy, default="comprar")
