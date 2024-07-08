@@ -202,6 +202,8 @@ export class ListarPortfolioComponent {
       window.location.reload()
     })
 
+    //Assim que atualizara cotacao já enviar para o oneDrive
+    this.sincronizarUpload()
   }
 
   atualizandoFile = false
@@ -216,5 +218,16 @@ export class ListarPortfolioComponent {
     }
   }
 
+  // Sincronizar Donwnload e Upload
+  atualizandosincronizarDownload = false
+  sincronizarDownload():void {
+    this.atualizandosincronizarDownload = true
+    this._PortfolioService.downloadOneDrive().subscribe()
+    window.location.reload()
+  }
+
+  sincronizarUpload():void {
+    this._PortfolioService.uploadOneDrive().subscribe()
+  }
 
 }

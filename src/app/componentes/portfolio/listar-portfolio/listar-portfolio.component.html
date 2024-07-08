@@ -1,4 +1,3 @@
-
 <div class="container porfolioClass">
     <app-painel></app-painel>
 </div>
@@ -10,6 +9,7 @@
         <input type="text" name="searchTipo" id="" (change)="searchTerm($event)">
 
     </div>
+
     <br>
 
     <table class="table table-hover">
@@ -34,24 +34,24 @@
             @for (item of portfolio; track $index) {
 
             <tr class="tr.tbody">
-                <td >{{$index}}</td>
+                <td>{{$index}}</td>
 
                 <!-- Button modal -->
                 <td id="ativo">
                     <!-- Button trigger modal -->
-                    <button id="buttonAtivo" *ngIf=" item.status == 'comprar'" type="button" class="btn btn-primary" 
+                    <button id="buttonAtivo" *ngIf=" item.status == 'comprar'" type="button" class="btn btn-primary"
                         data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal'+item.id">
                         {{item.ativo}}
                     </button>
-                    <button id="buttonAtivo" *ngIf=" item.status == 'aguardar'" type="button" class="btn btn-warning" 
+                    <button id="buttonAtivo" *ngIf=" item.status == 'aguardar'" type="button" class="btn btn-warning"
                         data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal'+item.id">
                         {{item.ativo}}
                     </button>
-                    <button id="buttonAtivo" *ngIf=" item.status == ''" type="button" class="btn btn-success" 
+                    <button id="buttonAtivo" *ngIf=" item.status == ''" type="button" class="btn btn-success"
                         data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal'+item.id">
                         {{item.ativo}}
                     </button>
-                    <button id="buttonAtivo" *ngIf=" item.status == 'vender'" type="button" class="btn btn-danger"  
+                    <button id="buttonAtivo" *ngIf=" item.status == 'vender'" type="button" class="btn btn-danger"
                         data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal'+item.id">
                         {{item.ativo}}
                     </button>
@@ -91,8 +91,8 @@
 
                 <!-- Variacao anual -->
 
-                <td>{{item.variacaoAnual|percent:"1.0-2"}}</td> 
-   
+                <td>{{item.variacaoAnual|percent:"1.0-2"}}</td>
+
 
                 <!-- porcentagem -->
                 <td [style]="item.porcentagem*100 < item.meta ? 'color:red' : ''">{{item.porcentagem|percent:"1.0-2"}}
@@ -142,7 +142,22 @@
         <tfoot>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Ativo</th>
+                <th scope="col">
+                    @if (!atualizandosincronizarDownload) {
+                        <button class="btn " (click)="sincronizarDownload()"><b>Sincronizar OneDrive </b> <img
+                            src="../../../../assets/onedrive.png" width="45px" alt="" title="Sincronizar com OneDrive"
+                            srcset=""></button>
+    
+                        }
+                        @else {
+    
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+    
+                        }
+
+                </th>
 
                 <th scope="col">
                     @if (!atualizandoCotacao) {
@@ -185,35 +200,36 @@
 
 <br>
 @if (!atualizandoFile) {
-    <div class="container mb-3 fileupload">
-        <label for="formFile" class="form-label">Coloque sua carteira B3 .XLSX</label>
-        <input class="form-control" type="file" id="formFile" (change)="fileB3($event)" multiple="false" accept=".xlsx">
-        
-    </div>
+<div class="container mb-3 fileupload">
+    <label for="formFile" class="form-label">Coloque sua carteira B3 .XLSX</label>
+    <input class="form-control" type="file" id="formFile" (change)="fileB3($event)" multiple="false" accept=".xlsx">
 
-    <div class="container mb-3 fileupload">
-        <p>Passos:</p>
-        <ol>
-            <li>
-                <a href="https://www.investidor.b3.com.br/login?utm_source=B3_MVP&utm_medium=HM_PF&utm_campaign=menu" target="_blank">Área do Investidor</a>
-            </li>
-            <li>
-                Aba posição
-            </li>
-            <li>
-                Baixar o relatorio em XLSX
-            </li>
-            <li>
-                Realizar Upload do arquivo
-            </li>
-        </ol>
-    </div>
+</div>
 
-    }
-    @else {
+<div class="container mb-3 fileupload">
+    <p>Passos:</p>
+    <ol>
+        <li>
+            <a href="https://www.investidor.b3.com.br/login?utm_source=B3_MVP&utm_medium=HM_PF&utm_campaign=menu"
+                target="_blank">Área do Investidor</a>
+        </li>
+        <li>
+            Aba posição
+        </li>
+        <li>
+            Baixar o relatorio em XLSX
+        </li>
+        <li>
+            Realizar Upload do arquivo
+        </li>
+    </ol>
+</div>
 
-    <div class="spinner-border file" role="status">
-        <span class="visually-hidden">Loading...</span>
-    </div>
+}
+@else {
 
-    }
+<div class="spinner-border file" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+
+}

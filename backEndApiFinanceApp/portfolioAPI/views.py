@@ -11,6 +11,7 @@ from datetime import date, timedelta
 import yfinance as yf
 import pandas as pd
 import warnings
+from . microsoftGraph import deletarArquivoOneDrive, criarPastaOneDrive, listarArquivoOneDrive, uploadArquivoOneDrive, downloadArquivoOneDrive
 
 warnings.simplefilter("ignore")
 
@@ -60,7 +61,32 @@ def atualizarCotacao(request):
 
     return JsonResponse({'message': 'Cotacao atualizada'})
  
+def sincronizarDownload(request):
+    
+    try:
+        downloadArquivoOneDrive()
+        print("Sincronizacao de Download Realizado...")
+    except:
+        print("ERROR: Sincronizacao de Download NAO Realizado...")
+        
+    
+    return JsonResponse({'message': 'Download Finalizado...'})
 
+def sincronizarUpload(request):
+    try:
+        deletarArquivoOneDrive()
+    except:
+        print('ERROR: Nao foi possivel deletar pasta no oneDrive')
+        
+    criarPastaOneDrive()
+    
+    try:
+        uploadArquivoOneDrive()
+        print("Sincronizacao de Upload Realizado...")
+    except:
+        print('ERROR: Nao foi possivel realizar upload na pasta do oneDrive')
+        
+    return JsonResponse({'message': 'Upload Finalizado...'})
 
 class PortfolioViewSet(viewsets.ModelViewSet):
 

@@ -12,6 +12,9 @@ export class PortfolioService {
   private apiDjangoRestLinkFile = "http://127.0.0.1:8000/api/fileUpload/"
   private apiDjangoRestAtualizarCotacao = "http://127.0.0.1:8000/api/atualizarCotacao/"
 
+  private apiDjangoRestDownloadOnedrive = "http://127.0.0.1:8000/api/sincronizarDownload/"
+  private apiDjangoRestUploadOnedrive = "http://127.0.0.1:8000/api/sincronizarUpload/"
+
 
   constructor(
     private _httpClient: HttpClient,
@@ -46,9 +49,8 @@ export class PortfolioService {
     return this._httpClient.get(linkUpdatePrice)
   }
 
+  //UploadFileB3
   uploadFile(file: File): Observable<HttpEvent<any>> {
-
-
 
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);
@@ -57,7 +59,18 @@ export class PortfolioService {
 
   }
 
+  //DownloadOneDrive
+  downloadOneDrive(){
+    let linkDownloadOneDrive:string = `${this.apiDjangoRestDownloadOnedrive}`
+    return this._httpClient.get(linkDownloadOneDrive)
+  }
 
+
+  //UploadOneDrive
+  uploadOneDrive(){
+    let linkUploadOneDrive:string = `${this.apiDjangoRestUploadOnedrive}`
+    return this._httpClient.get(linkUploadOneDrive)
+  }
 
 
 }

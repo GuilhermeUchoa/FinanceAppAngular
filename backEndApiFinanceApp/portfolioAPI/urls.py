@@ -12,5 +12,7 @@ urlpatterns = [
     path('', include(router.urls)),
     path('atualizarCotacao/', views.atualizarCotacao, name='atualizarCotacao'),
     path('fileUpload/', views.upload_file, name='FileUpload'),
+    path('sincronizarDownload/', views.sincronizarDownload, name='sincronizarDownload'),
+    path('sincronizarUpload/', views.sincronizarUpload, name='sincronizarUpload'),
 
 ]
