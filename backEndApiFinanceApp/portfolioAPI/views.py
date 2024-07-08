@@ -41,10 +41,11 @@ def atualizarCotacao(request):
     
         df = pd.DataFrame(round(yf.download([i.ativo+'.SA' for i in Carteira.objects.filter().exclude(tipo='rendaFixa')],
                                             start= f"{date.today().year}-01-01",
-                                            end= data_atual,
                                             threads=True)['Close'],2))
         
         df.fillna(0,inplace=True)
+        
+        print(df)
 
         for i in df:
             
@@ -60,7 +61,7 @@ def atualizarCotacao(request):
         pass
 
     return JsonResponse({'message': 'Cotacao atualizada'})
- 
+
 def sincronizarDownload(request):
     
     try:

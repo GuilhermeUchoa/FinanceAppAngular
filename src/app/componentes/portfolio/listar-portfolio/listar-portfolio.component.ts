@@ -195,11 +195,12 @@ export class ListarPortfolioComponent {
   }
   atualizandoCotacao = false
   atualizarCotacoesDaCarteira(): void {
-    // Atualiza cotacoes, porem preciso ajustar para que assim atualizar a pagina ser atualizada
+    // Atualiza cotacoes
     this.atualizandoCotacao = true
     this._PortfolioService.atualizarCotacao().subscribe((data) => {
       console.log(data)
       window.location.reload()
+  
     })
 
     //Assim que atualizara cotacao já enviar para o oneDrive

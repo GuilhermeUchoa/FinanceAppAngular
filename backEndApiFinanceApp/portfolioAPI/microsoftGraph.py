@@ -1,45 +1,42 @@
 import requests
 import json
 import urllib
-import os
-from getpass import getpass
-import time
-from datetime import datetime
+import urllib.parse
+
 
 #Autenticacao
 
+# Autenticação
 URL = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize'
 client_id = "bd7a72f5-90a1-4e2d-b320-307fc7618ab4"
 permissions = ['files.readwrite']
 response_type = 'token'
-redirect_uri = 'http://localhost:4200/'
-scope = ''
-for items in range(len(permissions)):
-    scope = scope + permissions[items]
-    if items < len(permissions)-1:
-        scope = scope + '+'
+redirect_uri = 'http://localhost:4200'
+scope = ' '.join(permissions)
 
-print('Click over this link ' +URL + '?client_id=' + client_id + '&scope=' + scope + '&response_type=' + response_type+\
-     '&redirect_uri=' + urllib.parse.quote(redirect_uri))
-print('Sign in to your account, copy the whole redirected URL.')
-code = input("Copie o URL completo aqui :")
-token = code[(code.find('access_token') + len('access_token') + 1) : (code.find('&token_type'))]
+# Construindo a URL de autorização
+auth_url = f'{URL}?client_id={client_id}&scope={scope}&response_type={response_type}&redirect_uri={urllib.parse.quote(redirect_uri)}'
+print('Por favor, acesse este link para fazer login:')
+print(auth_url)
 
+# Capturando o token manualmente (não é o método recomendado)
+auth_code = input("Copie o URL completo após o redirecionamento aqui: ")
+token = auth_code.split('access_token=')[1].split('&')[0]
 
-URL = 'https://graph.microsoft.com/v1.0/'
-HEADERS = {'Authorization': 'Bearer ' + token}
-response = requests.get(URL + 'me/drive/', headers = HEADERS)
-if (response.status_code == 200):
-    response = json.loads(response.text)
-    print('Connected to the OneDrive of', response['owner']['user']['displayName']+' (',response['driveType']+' ).', \
-         '\nConnection valid for one hour. Reauthenticate if required.')
-elif (response.status_code == 401):
-    response = json.loads(response.text)
-    print('API Error! : ', response['error']['code'],\
-         '\nSee response for more details.')
+# Usando o token para acessar o OneDrive API
+graph_url = 'https://graph.microsoft.com/v1.0/'
+headers = {'Authorization': 'Bearer ' + token}
+response = requests.get(graph_url + 'me/drive/', headers=headers)
+
+if response.status_code == 200:
+    response_data = json.loads(response.text)
+    print(f'Conectado ao OneDrive de {response_data["owner"]["user"]["displayName"]} ({response_data["driveType"]}).')
+    print('Conexão válida por uma hora. Reautenticar se necessário.')
+elif response.status_code == 401:
+    response_data = json.loads(response.text)
+    print(f'Erro de API: {response_data["error"]["code"]}')
 else:
-    response = json.loads(response.text)
-    print('Unknown error! See response for more details.')
+    print(f'Erro desconhecido! Status code: {response.status_code}')
     
     
     
