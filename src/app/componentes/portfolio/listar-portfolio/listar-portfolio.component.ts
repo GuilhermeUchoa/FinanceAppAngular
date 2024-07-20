@@ -56,7 +56,6 @@ export class ListarPortfolioComponent {
     //Listar carteira
     this._PortfolioService.listarPortfolio().subscribe((data) => {
       this.portfolio = data
-      console.log(this.portfolio)
 
       //Quantidade Total
       this.quantidadeTotal()
