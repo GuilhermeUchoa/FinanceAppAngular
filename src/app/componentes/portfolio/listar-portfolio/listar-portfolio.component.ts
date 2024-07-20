@@ -169,9 +169,18 @@ export class ListarPortfolioComponent {
     })
   }
 
+  searchTermAtivo = false
   searchTerm(event: any): void {
+    
     //Buscador
     let word: string = (event.target.value).toLowerCase()
+   
+    if (word != ""){
+      this.searchTermAtivo = true
+    }else{
+      this.searchTermAtivo = false
+    }
+
     this._PortfolioService.searchApi(word).subscribe((data) => {
       this.portfolio = data
     
@@ -191,7 +200,7 @@ export class ListarPortfolioComponent {
 
     })
 
-
+    
   }
   atualizandoCotacao = false
   atualizarCotacoesDaCarteira(): void {

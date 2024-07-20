@@ -24,7 +24,13 @@
                 <th scope="col">Variação Anual</th>
                 <th scope="col">Porcentagem</th>
                 <th scope="col">Meta</th>
+                @if (searchTermAtivo == true) {
                 <th scope="col">Meta Relativa</th>
+                }
+                @else {
+
+                }
+
                 <th scope="col">Status</th>
                 <th scope="col">Tipo</th>
                 <th scope="col">Aporte</th>
@@ -96,8 +102,13 @@
 
 
                 <!-- porcentagem -->
-                <td [style]="item.porcentagem*100 < item.meta ? 'color:red' : ''">{{item.porcentagem|percent:"1.0-2"}}
-                </td>
+                @if (searchTermAtivo == true) {
+                    <td [style]="item.porcentagem*100 < ((item.meta*100)/metaTotalCarteira) ? 'color:red' : ''">{{item.porcentagem|percent:"1.0-2"}}</td>
+                    }
+                @else{
+                    <td [style]="item.porcentagem*100 < item.meta ? 'color:red' : ''">{{item.porcentagem|percent:"1.0-2"}}</td>
+                }
+                
 
                 <!-- input Meta -->
                 <td style="width:125px">
@@ -109,15 +120,22 @@
                     </div>
                 </td>
 
+                @if (searchTermAtivo == true) {
                 <!-- input relativa não alteravel -->
                 <td style="width:125px">
                     <div class="input-group input-group-sm mb-3">
                         <input type="number" class="form-control" id="meta" aria-label="Amount (to the nearest dollar)"
-                            value="{{((item.meta*100)/metaTotalCarteira).toFixed(2)}}"  name="meta" step="0.1"
+                            value="{{((item.meta*100)/metaTotalCarteira).toFixed(2)}}" name="meta" step="0.1"
                             style="text-align: center; width: 50px;">
                         <span class="input-group-text">%</span>
                     </div>
                 </td>
+                }
+                @else {
+
+                }
+
+
 
                 <!-- Status -->
                 <td style="align-items: center;">
@@ -155,18 +173,18 @@
                 <th scope="col">#</th>
                 <th scope="col">
                     @if (!atualizandosincronizarDownload) {
-                        <button class="btn " (click)="sincronizarDownload()"><b>Sinc with OneDrive </b> <img
+                    <button class="btn " (click)="sincronizarDownload()"><b>Sinc with OneDrive </b> <img
                             src="../../../../assets/onedrive.png" width="45px" alt="" title="Sincronizar com OneDrive"
                             srcset=""></button>
-    
-                        }
-                        @else {
-    
-                        <div class="spinner-border" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-    
-                        }
+
+                    }
+                    @else {
+
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+
+                    }
 
                 </th>
 
@@ -190,7 +208,7 @@
                 <th scope="col">{{valorTotalCarteira|currency:'BRL'}}</th>
                 <th scope="col">{{variacaoAnualTotalDaCarteira|percent:'1.0-2'}}</th>
                 <th scope="col">{{porcentagemTotalCarteira|percent:'1.0-2'}}</th>
-                
+
                 <th scope="col">
                     <div class="input-group input-group-sm mb-3">
                         <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)"
@@ -199,7 +217,14 @@
                         <span class="input-group-text">%</span>
                     </div>
                 </th>
-                <th scope="col"></th>
+
+                @if (searchTermAtivo == true) {
+                    <th scope="col"></th>
+                }
+                @else {
+
+                }
+
                 <th scope="col">Status</th>
                 <th scope="col">Tipo</th>
                 <th scope="col" id="aporteValorTotal">{{valorTotalAporte|currency:'BRL'}}</th>
