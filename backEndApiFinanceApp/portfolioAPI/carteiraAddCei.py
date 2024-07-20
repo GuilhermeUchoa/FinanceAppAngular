@@ -3,7 +3,7 @@ import pandas as pd
 
 #Preciso melhorar esse codigo
 def carteiraAddCei(arquivo):
-
+    listaCarteiraDF = []
     df_acoes = pd.read_excel(arquivo,sheet_name=0).dropna()
     df_bdr = pd.read_excel(arquivo,sheet_name=1).dropna()
     df_fii = pd.read_excel(arquivo,sheet_name=2).dropna() 
@@ -26,7 +26,10 @@ def carteiraAddCei(arquivo):
 
             else:
                 ativo = valor['Código de Negociação'].loc[i]
-       
+
+
+            #Add para lista de carteiras que tem no DataFrame
+            listaCarteiraDF.append(ativo)
      
             try:
                 Carteira.objects.filter(ativo=ativo).get()
@@ -54,7 +57,16 @@ def carteiraAddCei(arquivo):
                         valor = 0,
                         tipo = chave
                         )
-                    
                 carteira.save()
+                
                 print(f'novo ativo {ativo} adicionado a carteira')
+                
+    #Compara a carteira da B3 com a do APP se tiver algo a mais na carteira do APP significa que me desfiz do ativo na corretora e entao ele exclui o ativo da Carteira do app
+    listaCarteiraBD = [i.ativo for i in Carteira.objects.all()]
+    listaDeExclusao = list(set(listaCarteiraBD).difference(set(listaCarteiraDF)))
+    for i in listaDeExclusao:
+        
+        carteira = Carteira.objects.filter(ativo=i).delete()
+        print(f'Ativo {i} foi excluido da carteira')
+   
                 

@@ -56,6 +56,7 @@ export class ListarPortfolioComponent {
     //Listar carteira
     this._PortfolioService.listarPortfolio().subscribe((data) => {
       this.portfolio = data
+      console.log(this.portfolio)
 
       //Quantidade Total
       this.quantidadeTotal()
@@ -92,7 +93,7 @@ export class ListarPortfolioComponent {
   }
 
   variacaoAnualCarteira(): void {
-    this.variacaoAnualTotalDaCarteira = this.portfolio.reduce((previousValue, currentValue) => previousValue + currentValue.variacaoAnual, 0)/this.portfolio.length
+    this.variacaoAnualTotalDaCarteira = this.portfolio.reduce((previousValue, currentValue) => previousValue + currentValue.variacaoAnual, 0)
   }
 
   porcentagemTotal(): void {

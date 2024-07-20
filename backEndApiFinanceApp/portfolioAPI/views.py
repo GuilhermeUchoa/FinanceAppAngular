@@ -32,11 +32,11 @@ def atualizarCotacao(request):
     try:
         #Maneira de se caso a data atual for sabado ou domingo retorna a cotacao de sexta
         Carteira = PortfolioModels
-        if date.today().weekday() in [5,6]:
-            sexta = date.today().weekday() - 4
-            data_atual = date.today() - timedelta(days=sexta)
-        else:
-            data_atual = date.today()
+        # if date.today().weekday() in [5,6]:
+        #     sexta = date.today().weekday() - 4
+        #     data_atual = date.today() - timedelta(days=sexta)
+        # else:
+        #     data_atual = date.today()
 
     
         df = pd.DataFrame(round(yf.download([i.ativo+'.SA' for i in Carteira.objects.filter().exclude(tipo='rendaFixa')],
@@ -45,8 +45,6 @@ def atualizarCotacao(request):
         
         df.fillna(0,inplace=True)
         
-        print(df)
-
         for i in df:
             
             ativo = str(i[:-3])
