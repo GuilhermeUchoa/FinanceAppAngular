@@ -3,7 +3,7 @@
  - Esse sistema foi desenvolvido com a intenção de facilitar meus aportes em minha carteira de investimentos, sempre tive a dificuldade de calcular quanto comprar de cada cota, sendo acão, Fii, BDR ou Renda Fixa, para respeitar meu balanceamento, então desenvolvi este projeto inicialmente com uma tabela em excel e depois como hobbie e desafio utilizando angular e django.
 
 
- ![Captura de tela 2024-06-21 131825](https://github.com/GuilhermeUchoa/FinanceAppAngular/blob/main/src/assets/Captura%20de%20tela%202024-07-28%20140614.png)
+ ![Home](https://github.com/GuilhermeUchoa/FinanceAppAngular/blob/main/src/assets/Home.png)
 
 
  # Para instalar este projeto eu seu PC:
