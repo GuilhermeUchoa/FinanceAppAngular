@@ -42,4 +42,6 @@
 
 [x] - Sinalizar compra quando o preco medio e a porcentagem meta sinalizar
 
+[x] - Sincronizar com o OneDrive
+
 [] - preco medio calculado
