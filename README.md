@@ -4,7 +4,7 @@
 
 <p align="center">
 
-    <img src="src/assets/Captura de tela 2024-07-28 140614.png">
+    <img src="src/assets/Captura%20de%20tela%202024-07-28%20140614.png">
 </p>
 
  # Para instalar este projeto eu seu PC:
