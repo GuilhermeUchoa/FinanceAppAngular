@@ -46,10 +46,8 @@ Thumbs.db
 /venv
 
 #DjangoFiles
-backEndApiFinanceApp/db.sqlite3
 backEndApiFinanceApp/media/b3/*
-backEndApiFinanceApp/db.sqlite3
 backEndApiFinanceApp/portfolioAPI/__pycache__
 backEndApiFinanceApp/backEndApiFinanceApp/__pycache__
 backEndApiFinanceApp/db.sqlite3
-
+backEndApiFinanceApp/db.sqlite3
