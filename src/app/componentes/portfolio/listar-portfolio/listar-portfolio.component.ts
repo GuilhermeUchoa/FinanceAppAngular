@@ -240,4 +240,14 @@ export class ListarPortfolioComponent {
     this._PortfolioService.uploadOneDrive().subscribe()
   }
 
+  //PrecoMedio save
+  precoMedio(event: any,id: any){
+    this._PortfolioService.getAtivo(id).subscribe((data)=>{
+      let portfolio = data
+      data.precoMedio = event.target.value
+
+      this._PortfolioService.atualizarAtivo(id,portfolio).subscribe()
+    })
+  }
+
 }

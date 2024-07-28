@@ -37,4 +37,8 @@
 
 [x] - Se nao tiver como atualizaliar entao devo criar um novo ativo, criar essa feature
 
-[ ] - BackEnd Excel para carteira com erro
+[x] - BackEnd Excel para carteira com erro
+
+[x] - Sinalizar compra quando o preco medio e a porcentagem meta sinalizar
+
+[] - preco medio calculado
