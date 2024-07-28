@@ -4,7 +4,7 @@
 
 <p align="center">
 
-    <img src="../../../../assets/Captura de tela 2024-07-28 140614.png" alt="" srcset="">
+    <img src="src/assets/Captura de tela 2024-07-28 140614.png">
 </p>
 
  # Para instalar este projeto eu seu PC:
