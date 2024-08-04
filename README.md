@@ -45,3 +45,5 @@
 [x] - Sincronizar com o OneDrive
 
 [] - preco medio calculado
+
+[] - 

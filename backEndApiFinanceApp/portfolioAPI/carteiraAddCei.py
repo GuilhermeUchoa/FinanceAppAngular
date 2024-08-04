@@ -32,12 +32,21 @@ def carteiraAddCei(arquivo):
             listaCarteiraDF.append(ativo)
      
             try:
-                Carteira.objects.filter(ativo=ativo).get()
-                if Carteira.objects.filter(ativo=ativo).get().ativo == ativo:
+
+                if Carteira.objects.filter(ativo=ativo).get().ativo == ativo and chave != 'rendaFixa':
                     carteira = Carteira.objects.filter(ativo=ativo).get()
                     carteira.quantidade = valor['Quantidade'].loc[i]
                     carteira.save()
                     print(f'Ativo {ativo} atualizado')
+                else:
+                    carteira = Carteira.objects.filter(ativo=ativo).get()
+                    carteira.quantidade = float(valor['Quantidade'].loc[i])
+                    carteira.cotacao = float(valor['Valor Atualizado'].loc[i]/valor['Quantidade'].loc[i])
+                    carteira.valor = float(valor['Valor Atualizado'].loc[i])
+                    carteira.precoMedio = float(valor['Valor Aplicado'].loc[i])
+                    carteira.save()
+                    print(f'Ativo do tipo RendaFixa {ativo} atualizado')
+                    
             except:
             
                 if chave == 'rendaFixa':
@@ -45,8 +54,8 @@ def carteiraAddCei(arquivo):
                     carteira = Carteira(
                         ativo = ativo,
                         quantidade = valor['Quantidade'].loc[i],
-                        cotacao = valor['Valor líquido'].loc[i]/valor['Quantidade'].loc[i],
-                        valor = valor['Valor líquido'].loc[i],
+                        cotacao = valor['Valor Atualizado'].loc[i]/valor['Quantidade'].loc[i],
+                        valor = valor['Valor Atualizado'].loc[i],
                         tipo = chave
                         )
                 else:

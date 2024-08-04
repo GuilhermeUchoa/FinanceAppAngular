@@ -179,10 +179,11 @@
 
                 <!-- Sinal para comprar abaixo do preco medio -->
                 <td>
-                    @if(item.cotacao < item.precoMedio && item.porcentagem < item.meta){
+                    @if(item.cotacao < item.precoMedio && (item.porcentagem*100) < item.meta){
                         <img src="../../../../assets/location.png" alt="" srcset="" width="20px">
                     }
                 </td>
+
             </tr>
 
             }
@@ -229,11 +230,11 @@
                 <th scope="col">{{variacaoAnualTotalDaCarteira|percent:'1.0-2'}}</th>
                 <th scope="col">{{porcentagemTotalCarteira|percent:'1.0-2'}}</th>
 
-                <th scope="col">
+                <th scope="col" style="width: 150px">
                     <div class="input-group input-group-sm mb-3">
                         <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)"
                             [value]="metaTotalCarteira | number : '1.0-2'" name="meta"
-                            style="text-align: center; width: 80px; font-weight: 900;">
+                            style="text-align: center;  font-weight: 900;">
                         <span class="input-group-text">%</span>
                     </div>
                 </th>
