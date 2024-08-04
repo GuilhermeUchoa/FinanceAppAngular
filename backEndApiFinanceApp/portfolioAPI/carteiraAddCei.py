@@ -43,7 +43,7 @@ def carteiraAddCei(arquivo):
                     carteira.quantidade = float(valor['Quantidade'].loc[i])
                     carteira.cotacao = float(valor['Valor Atualizado'].loc[i]/valor['Quantidade'].loc[i])
                     carteira.valor = float(valor['Valor Atualizado'].loc[i])
-                    carteira.precoMedio = float(valor['Valor Aplicado'].loc[i])
+                    carteira.precoMedio = 0
                     carteira.save()
                     print(f'Ativo do tipo RendaFixa {ativo} atualizado')
                     
