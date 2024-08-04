@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView
 from . serializers import PortfolioSerializer
 from rest_framework import viewsets, filters
-from . carteiraAddCei import carteiraAddCei
+from . carteiraAddCei import carteiraAddCei, precoMedioAnual
 from . models import PortfolioModels
 from django.http import JsonResponse
 from datetime import date, timedelta
@@ -20,7 +20,13 @@ def upload_file(request):
     
     if request.method == 'POST' and request.FILES['file']:
         uploaded_file = request.FILES['file']
-        carteiraAddCei(uploaded_file)
+        name = request.FILES['file'].name
+
+        if name[0:7] == 'posicao':
+            carteiraAddCei(uploaded_file)
+        if name[0:10] == 'negociacao':
+            precoMedioAnual(uploaded_file)
+
         # Faça algo com o arquivo, como salvá-lo no servidor
         # Exemplo: uploaded_file.save('/path/to/save/location')
         return JsonResponse({'message': 'File uploaded successfully'})

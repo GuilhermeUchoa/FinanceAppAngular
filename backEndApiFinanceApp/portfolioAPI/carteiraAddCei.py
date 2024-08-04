@@ -78,4 +78,21 @@ def carteiraAddCei(arquivo):
         carteira = Carteira.objects.filter(ativo=i).delete()
         print(f'Ativo {i} foi excluido da carteira')
    
-                
+def precoMedioAnual(arquivo):
+    df = pd.read_excel(arquivo,sheet_name=0)
+    
+    for i in df['Código de Negociação'].unique():
+        valorMedio = round(float(df[df['Código de Negociação'] == i]['Valor'].sum() /  df[df['Código de Negociação'] == i]['Quantidade'].sum()),2)
+        
+        if i[-1] == 'F':
+            ativo = i[0:-1]
+        else:
+            ativo = i
+        
+        try:
+            carteira = Carteira.objects.filter(ativo=ativo).get()
+            carteira.precoMedio = valorMedio
+            print(f'Ativo {ativo} teve seu preco medio atualizado para {valorMedio}')
+            carteira.save()
+        except:
+            pass

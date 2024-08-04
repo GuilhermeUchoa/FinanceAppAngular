@@ -44,6 +44,6 @@
 
 [x] - Sincronizar com o OneDrive
 
-[] - preco medio calculado
+[x] - preco medio anual calculado
 
-[] - 
+[] - preco medio acumulativo 
