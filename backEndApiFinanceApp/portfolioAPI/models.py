@@ -27,6 +27,7 @@ class PortfolioModels(models.Model):
     valor = models.FloatField(blank=True, null=True, default=0)
     aporte = models.IntegerField(blank=True, null=True, default=0)
     precoMedio = models.FloatField(blank=True, null=True)
+    valuation = models.FloatField(blank=True, null=True)
     comentarios = models.TextField(blank=True, null=True)
 
 

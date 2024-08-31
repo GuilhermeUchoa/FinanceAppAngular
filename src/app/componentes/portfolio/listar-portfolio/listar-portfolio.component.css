@@ -30,3 +30,7 @@ table tfoot tr {
     padding: 30px;
 }
 
+
+.table.table-hover {
+    width: 1400px;
+  }

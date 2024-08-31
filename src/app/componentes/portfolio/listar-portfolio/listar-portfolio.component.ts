@@ -250,4 +250,13 @@ export class ListarPortfolioComponent {
     })
   }
 
+  //Valuation save
+  valuation(event: any,id: any){
+    this._PortfolioService.getAtivo(id).subscribe((data)=>{
+      let portfolio = data
+      data.valuation = event.target.value
+      this._PortfolioService.atualizarAtivo(id,portfolio).subscribe()
+    })
+  }
+
 }
