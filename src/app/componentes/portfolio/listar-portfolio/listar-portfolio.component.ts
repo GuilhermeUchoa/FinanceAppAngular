@@ -53,9 +53,13 @@ export class ListarPortfolioComponent {
   }
 
   listarPortfolio(): void {
-    //Listar carteira
+    //Listar carteira em ordem por tipo de ativo
     this._PortfolioService.listarPortfolio().subscribe((data) => {
-      this.portfolio = data
+      this.portfolio = data.sort((a, b) => {
+        if (a.tipo < b.tipo) return -1;
+        if (a.tipo > b.tipo) return 1;
+        return 0;
+      });
 
       //Quantidade Total
       this.quantidadeTotal()
@@ -79,6 +83,7 @@ export class ListarPortfolioComponent {
       let portfolio = data
       portfolio.comentarios = event.target.value
       this._PortfolioService.atualizarAtivo(id, portfolio).subscribe()
+      console.log(event.target.value)
     })
 
   }
