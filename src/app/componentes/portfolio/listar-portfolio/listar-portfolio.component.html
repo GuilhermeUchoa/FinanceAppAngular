@@ -86,7 +86,7 @@
                                         <li>Quanto ela gera de receita, lucro e caixa?</li>
                                         <li>Possui dívidas?</li>
                                     </ul>
-                                    <textarea (change)="atualizarComentario($event,item.id)" name="" id="" cols="55" rows="21">{{item.comentarios}}</textarea>
+                                    <textarea (change)="atualizarComentario($event,item.id)" name="" id="" cols="65" rows="26">{{item.comentarios}}</textarea>
                                 </div>
                                 <div class="modal-footer">
                                     <!-- Nao coloque Atualizar comentario no botao, pois ele ira capturar nenhum texto do evento botao -->
@@ -112,14 +112,14 @@
                     </div>
                 </td>
 
-                <!-- Valuation -->
+                <!-- precoTeto Valuation -->
                 <td style="width:175px"> 
                     <div class="input-group input-group-sm mb-3" >
                         <span class="input-group-text">R$</span>
                         <input type="number" class="form-control" id="meta" aria-label="Amount (to the nearest dollar)"
                         value="{{item.valuation }}" (change)="valuation($event,item.id)"  name="meta" step="0.1"
                         style="text-align: center;"
-                        [style]="item.cotacao > item.valuation ? 'color:red':''"
+                        [style]="item.cotacao > item.valuation ? 'color:red':'color:lightgreen'"
                         >
                         
                     </div>
@@ -203,7 +203,7 @@
                 <!-- Sinal para comprar abaixo do preco medio -->
                 <td>
                     @if(item.cotacao < item.precoMedio && (item.porcentagem*100) < item.meta){
-                        <img src="../../../../assets/location.png" alt="" srcset="" width="20px">
+                        <img src="../../../../assets/location.png" alt="" srcset="" width="20px" title="A cotacao esta abaixo do preço medio e a meta não foi batida, excelente momento para compra" >
                     }
                 </td>
 

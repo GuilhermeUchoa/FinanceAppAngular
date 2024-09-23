@@ -83,7 +83,6 @@ export class ListarPortfolioComponent {
       let portfolio = data
       portfolio.comentarios = event.target.value
       this._PortfolioService.atualizarAtivo(id, portfolio).subscribe()
-      console.log(event.target.value)
     })
 
   }

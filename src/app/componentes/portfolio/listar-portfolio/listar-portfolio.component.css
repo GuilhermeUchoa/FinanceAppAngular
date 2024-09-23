@@ -37,4 +37,8 @@ table tfoot tr {
     left: 190px;
   }
 
+.modal-content {
+    width: 116%;
+}
+
 
