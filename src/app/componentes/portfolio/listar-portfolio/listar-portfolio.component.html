@@ -20,7 +20,7 @@
                 <th scope="col">Ativo</th>
                 <th scope="col">Cotacao</th>
                 <th scope="col">Preco Medio Ano Corrente</th>
-                <th scope="col">Preco Maximo 6%</th>
+                <th scope="col">Valuation (Dy 6%)(Fii 9%)</th>
                 <th scope="col">Dy</th>
                 <th scope="col">Quantidade</th>
                 <th scope="col">Valor</th>
@@ -98,7 +98,7 @@
                     </div>
                 </td>
 
-
+                <!-- Cotacao -->
                 <td [style]="item.cotacao < item.precoMedio ? 'color:lightgreen':''">{{item.cotacao|currency:'BRL'}}</td>
 
                 <!-- PrecoMedio -->
@@ -114,20 +114,12 @@
                 </td>
 
                 <!-- precoTeto Valuation -->
-                <td style="width:175px"> 
-                    <div class="input-group input-group-sm mb-3" >
-                        <span class="input-group-text">R$</span>
-                        <input type="number" class="form-control" id="meta" aria-label="Amount (to the nearest dollar)"
-                        value="{{item.valuation }}" (change)="valuation($event,item.id)"  name="meta" step="0.1"
-                        style="text-align: center;"
-                        [style]="item.cotacao > item.valuation ? 'color:red':'color:lightgreen'"
-                        >
-                        
-                    </div>
+                <td style=" border-left: 1px solid; border-left-color: rgba(0, 0, 0, 0.05)" > 
+                    {{item.valuation|currency:'BRL' }}
                 </td>
 
                 <!-- DY -->
-                <td>{{item.dy}}%</td>
+                <td style="border-right: 1px solid; border-right-color: rgba(0, 0, 0, 0.05)">{{item.dy}}%</td>
 
                 <!-- Quantidade -->
                 <td>{{item.quantidade}}</td>
@@ -143,15 +135,15 @@
 
                 <!-- porcentagem -->
                 @if (searchTermAtivo == true) {
-                    <td [style]="item.porcentagem*100 < ((item.meta*100)/metaTotalCarteira) ? 'color:red' : ''">{{item.porcentagem|percent:"1.0-2"}}</td>
+                    <td style="border-left: 1px solid; border-left-color: rgba(0, 0, 0, 0.05)" [style]="item.porcentagem*100 < ((item.meta*100)/metaTotalCarteira) ? 'color:red' : ''">{{item.porcentagem|percent:"1.0-2"}}</td>
                     }
                 @else{
-                    <td [style]="item.porcentagem*100 < item.meta ? 'color:red' : ''">{{item.porcentagem|percent:"1.0-2"}}</td>
+                    <td style="border-left: 1px solid; border-left-color: rgba(0, 0, 0, 0.05)" [style]="item.porcentagem*100 < item.meta ? 'color:red' : ''">{{item.porcentagem|percent:"1.0-2"}}</td>
                 }
                 
 
                 <!-- input Meta -->
-                <td style="width:125px">
+                <td style="width:125px; border-right: 1px solid rgba(0, 0, 0, 0.05)">
                     <div class="input-group input-group-sm mb-3">
                         <input type="number" class="form-control" id="meta" aria-label="Amount (to the nearest dollar)"
                             value="{{item.meta}}" (change)="atualizarMeta($event,item.id)" name="meta" step="0.1"
@@ -206,8 +198,8 @@
 
                 <!-- Sinal para comprar abaixo do preco medio -->
                 <td>
-                    @if(item.cotacao < item.precoMedio && (item.porcentagem*100) < item.meta){
-                        <img src="../../../../assets/location.png" alt="" srcset="" width="20px" title="A cotacao esta abaixo do preço medio e a meta não foi batida, excelente momento para compra" >
+                    @if(item.cotacao < item.valuation && (item.porcentagem*100) < item.meta){
+                        <img src="../../../../assets/location.png" alt="" srcset="" width="20px" title="A cotacao esta abaixo do preço valuation e a meta não foi batida, excelente momento para compra" >
                     }
                 </td>
 

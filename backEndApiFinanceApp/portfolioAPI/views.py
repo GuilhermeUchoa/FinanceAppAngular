@@ -73,7 +73,7 @@ def atualizarCotacao(request):
                 carteira.dy = round(dividend_yield*100,2)
                 # Calculo de preço maximo a 6%
                 if carteira.tipo == 'fii':    
-                    precoMaximo = (cotacao*dividend_yield)/0.8
+                    precoMaximo = (cotacao*dividend_yield)/0.09
                 else:
                     precoMaximo = (cotacao*dividend_yield)/0.06
                 carteira.valuation = round(precoMaximo,2)
