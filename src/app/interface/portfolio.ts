@@ -13,4 +13,5 @@ export interface Portfolio {
     "comentarios": string,
     "precoMedio":number,
     "valuation":number,
+    "dy":number,
 }

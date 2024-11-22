@@ -21,13 +21,17 @@ class PortfolioModels(models.Model):
     porcentagem = models.FloatField(blank=True, null=True)
     variacaoAnual = models.FloatField(blank=True, null=True)
     meta = models.FloatField(blank=True, null=True)
+    dy = models.FloatField(blank=True, null=True)
     quantidade = models.FloatField(blank=True, null=True, default=0)
     status = models.CharField(max_length=250,choices=StatusToBuy, default="comprar")
     tipo = models.CharField(max_length=250,choices=TIPO)
     valor = models.FloatField(blank=True, null=True, default=0)
     aporte = models.IntegerField(blank=True, null=True, default=0)
     precoMedio = models.FloatField(blank=True, null=True)
+
+    # preco maximo a 6%
     valuation = models.FloatField(blank=True, null=True)
+    
     comentarios = models.TextField(blank=True, null=True)
 
 

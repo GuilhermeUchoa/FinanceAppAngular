@@ -32,9 +32,9 @@ table tfoot tr {
 
 
 .table.table-hover {
-    width: 1459px;
+    width: 1550px;
 
-    left: 190px;
+    margin-left: -140px;
   }
 
 .modal-content {

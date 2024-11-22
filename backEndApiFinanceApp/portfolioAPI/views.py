@@ -7,7 +7,7 @@ from rest_framework import viewsets, filters
 from . carteiraAddCei import carteiraAddCei, precoMedioAnual
 from . models import PortfolioModels
 from django.http import JsonResponse
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 import yfinance as yf
 import pandas as pd
 import warnings
@@ -50,6 +50,9 @@ def atualizarCotacao(request):
                                             threads=True)['Close'],2))
         
         df.fillna(0,inplace=True)
+
+        data_atual = datetime.now()
+        data_12_meses_atras = data_atual - timedelta(days=365)
         
         for i in df:
             
@@ -60,6 +63,24 @@ def atualizarCotacao(request):
             carteira.cotacao = cotacao
             carteira.valor = cotacao * carteira.quantidade
             carteira.variacaoAnual = (cotacao/cotacaoDoInicioDoAno - 1)
+
+            try:
+                # Calculando dividend yield para achar o preço maximo de compra com 6%
+                acao = yf.Ticker(i)
+                dividendos_ano_atual = acao.dividends[(acao.dividends.index >= str(data_12_meses_atras))]
+                dividendo_total_ano = dividendos_ano_atual.sum()
+                dividend_yield = (dividendo_total_ano / cotacao)
+                carteira.dy = round(dividend_yield*100,2)
+                # Calculo de preço maximo a 6%
+                if carteira.tipo == 'fii':    
+                    precoMaximo = (cotacao*dividend_yield)/0.8
+                else:
+                    precoMaximo = (cotacao*dividend_yield)/0.06
+                carteira.valuation = round(precoMaximo,2)
+
+            except:
+                pass
+
             carteira.save()
     except:
         pass
