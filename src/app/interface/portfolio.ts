@@ -14,4 +14,5 @@ export interface Portfolio {
     "precoMedio":number,
     "valuation":number,
     "dy":number,
+    "valuationDFC":number,
 }

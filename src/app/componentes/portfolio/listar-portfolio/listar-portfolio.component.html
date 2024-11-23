@@ -20,6 +20,7 @@
                 <th scope="col">Ativo</th>
                 <th scope="col">Cotacao</th>
                 <th scope="col">Preco Medio Ano Corrente</th>
+                <th scope="col">Valuation DFC</th>
                 <th scope="col">Valuation (Dy 6%)(Fii 9%)</th>
                 <th scope="col">Dy</th>
                 <th scope="col">Quantidade</th>
@@ -99,7 +100,7 @@
                 </td>
 
                 <!-- Cotacao -->
-                <td [style]="item.cotacao < item.precoMedio ? 'color:lightgreen':''">{{item.cotacao|currency:'BRL'}}</td>
+                <td [style]="item.cotacao < item.valuation ? 'color:lightgreen':''">{{item.cotacao|currency:'BRL'}}</td>
 
                 <!-- PrecoMedio -->
                 <td style="width:175px"> 
@@ -107,6 +108,18 @@
                         <span class="input-group-text">R$</span>
                         <input type="number" class="form-control" id="meta" aria-label="Amount (to the nearest dollar)"
                         value="{{item.precoMedio }}" (change)="precoMedio($event,item.id)"  name="meta" step="0.1"
+                        style="text-align: center;"
+                        >
+                        
+                    </div>
+                </td>
+
+                <!-- DFC -->
+                <td style="width:175px"> 
+                    <div class="input-group input-group-sm mb-3" >
+                        <span class="input-group-text">R$</span>
+                        <input type="number" class="form-control" id="meta" aria-label="Amount (to the nearest dollar)"
+                        value="{{item.valuationDFC }}" (change)="valuation($event,item.id)"  name="meta" step="0.1"
                         style="text-align: center;"
                         >
                         
@@ -198,7 +211,7 @@
 
                 <!-- Sinal para comprar abaixo do preco medio -->
                 <td>
-                    @if(item.cotacao < item.valuation && (item.porcentagem*100) < item.meta){
+                    @if(item.cotacao < item.valuationDFC && (item.porcentagem*100) < item.meta){
                         <img src="../../../../assets/location.png" alt="" srcset="" width="20px" title="A cotacao esta abaixo do preço valuation e a meta não foi batida, excelente momento para compra" >
                     }
                 </td>
@@ -243,6 +256,7 @@
                     }
 
                 </th>
+                <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>

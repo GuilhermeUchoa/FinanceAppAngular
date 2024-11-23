@@ -31,6 +31,10 @@ class PortfolioModels(models.Model):
 
     # preco maximo a 6%
     valuation = models.FloatField(blank=True, null=True)
+
+    # DFC
+    valuationDFC = models.FloatField(blank=True, null=True)
+    
     
     comentarios = models.TextField(blank=True, null=True)
 
