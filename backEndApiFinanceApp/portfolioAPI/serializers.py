@@ -4,5 +4,5 @@ from . models import PortfolioModels
 class PortfolioSerializer(serializers.ModelSerializer):
     class Meta:
         model = PortfolioModels
-        fields = ["id","ativo","cotacao","porcentagem","variacaoAnual","meta","quantidade","status","tipo","valor","aporte","comentarios","precoMedio","valuation","dy","valuationDFC"]
+        fields = [i.name for i in PortfolioModels._meta.get_fields()]
 

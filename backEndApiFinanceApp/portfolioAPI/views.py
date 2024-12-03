@@ -11,7 +11,7 @@ from datetime import date, timedelta, datetime
 import yfinance as yf
 import pandas as pd
 import warnings
-from . microsoftGraph import deletarArquivoOneDrive, criarPastaOneDrive, listarArquivoOneDrive, uploadArquivoOneDrive, downloadArquivoOneDrive
+
 
 warnings.simplefilter("ignore")
 
@@ -36,14 +36,8 @@ def upload_file(request):
 def atualizarCotacao(request):
     """Atualiza as cotacoes"""
     try:
-        #Maneira de se caso a data atual for sabado ou domingo retorna a cotacao de sexta
-        Carteira = PortfolioModels
-        # if date.today().weekday() in [5,6]:
-        #     sexta = date.today().weekday() - 4
-        #     data_atual = date.today() - timedelta(days=sexta)
-        # else:
-        #     data_atual = date.today()
 
+        Carteira = PortfolioModels
     
         df = pd.DataFrame(round(yf.download([i.ativo+'.SA' for i in Carteira.objects.filter().exclude(tipo='rendaFixa')],
                                             start= f"{date.today().year}-01-01",
@@ -87,32 +81,6 @@ def atualizarCotacao(request):
 
     return JsonResponse({'message': 'Cotacao atualizada'})
 
-def sincronizarDownload(request):
-    
-    try:
-        downloadArquivoOneDrive()
-        print("Sincronizacao de Download Realizado...")
-    except:
-        print("ERROR: Sincronizacao de Download NAO Realizado...")
-        
-    
-    return JsonResponse({'message': 'Download Finalizado...'})
-
-def sincronizarUpload(request):
-    try:
-        deletarArquivoOneDrive()
-    except:
-        print('ERROR: Nao foi possivel deletar pasta no oneDrive')
-        
-    criarPastaOneDrive()
-    
-    try:
-        uploadArquivoOneDrive()
-        print("Sincronizacao de Upload Realizado...")
-    except:
-        print('ERROR: Nao foi possivel realizar upload na pasta do oneDrive')
-        
-    return JsonResponse({'message': 'Upload Finalizado...'})
 
 class PortfolioViewSet(viewsets.ModelViewSet):
 
