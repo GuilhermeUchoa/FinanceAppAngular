@@ -1,1 +1,69 @@
-<p>ativo-detalhe works!</p>
+<div class="container">
+
+  <mat-grid-list cols="3" rowspan="3" rowHeight="400px">
+
+    <!-- Informacoes basicas -->
+    <mat-grid-tile colspan="2" rowspan="1">
+
+      <mat-card class="example-card" appearance="outlined">
+
+        <mat-card-header>
+          <mat-card-title>{{ativo.ativo}}</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>{{ativo.cotacao|currency:'BRL'}}</p>
+        </mat-card-content>
+
+        <mat-card-footer class="example-card-footer">
+          <mat-chip-set aria-label="Chihuahua traits">
+            <mat-chip>{{ativo.tipo}}</mat-chip>
+            <mat-chip>valor: {{ativo.valor|currency:'BRL'}}</mat-chip>
+            <mat-chip>variação: {{ativo.variacaoAnual|percent:'0.0-2'}}</mat-chip>
+          </mat-chip-set>
+        </mat-card-footer>
+
+      </mat-card>
+
+    </mat-grid-tile>
+
+    <!-- Valuation -->
+    <mat-grid-tile colspan="1" rowspan="1">
+
+      <mat-card class="example-card" appearance="outlined" style="position: relative; top: 40px;">
+
+        <mat-card-content>
+          <p>Meta: {{ativo.meta}}%</p>
+          <p>Dividend Yield: {{ativo.dy}}%</p>
+          @if(ativo.status == 'comprar'){
+          <p style="color: green;">Status: {{ativo.status}}</p>
+          }
+          @else{
+          <p style="">Status: {{ativo.status}}</p>
+          }
+          <p>PrecoMedio: {{ativo.precoMedio}}</p>
+          <p>ValuationDy: {{ativo.valuationDy|currency:'BRL'}}</p>
+          <p>ValuationDFC: {{ativo.valuationDFC|currency:'BRL'}}</p>
+        </mat-card-content>
+
+      </mat-card>
+
+    </mat-grid-tile>
+
+
+
+  </mat-grid-list>
+
+  <!-- Comentarios e anotacoes -->
+  <angular-editor [config]="editorConfig" [(ngModel)]="ativo.comentarios">
+    <ng-template #customButtons>
+      <ae-toolbar-set>
+        <ae-button iconClass="fa fa-floppy-o ae-button primary" class="ae-button primary" title="Salvar Texto"(buttonClick)="salvarAnotacoes()"></ae-button>
+      </ae-toolbar-set>
+    </ng-template>
+  </angular-editor>
+
+
+
+
+</div>

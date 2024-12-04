@@ -8,8 +8,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Router, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { routes } from '../../app.routes';
-import { timeInterval, timeout } from 'rxjs';
 
 
 
@@ -24,7 +22,7 @@ import { timeInterval, timeout } from 'rxjs';
     MatButtonModule,
     MatIconModule,
     RouterLink,
-    DecimalPipe
+    DecimalPipe,
   ],
   templateUrl: './listar-portfolio.component.html',
   styleUrl: './listar-portfolio.component.css'
@@ -38,7 +36,7 @@ export class ListarPortfolioComponent {
   metaTotalCarteira: number = 0
   valorTotalAporte: number = 0
   variacaoAnualTotalDaCarteira: number = 0
-
+  valorTotalemReaisParaMeta : any = 0
 
   constructor(
     private _PortfolioService: PortfolioService,
@@ -74,6 +72,8 @@ export class ListarPortfolioComponent {
       this.metaTotalCarteira = data.reduce((previousValue, currentValue) => previousValue + currentValue.meta, 0)
       //VaricaoAnulDaCarteira
       this.variacaoAnualCarteira()
+      //ValorTotalParaMeta Em reais
+      this.ValorTotalParaMeta()
 
     })
   }
@@ -102,6 +102,19 @@ export class ListarPortfolioComponent {
 
   porcentagemTotal(): void {
     this.porcentagemTotalCarteira = this.portfolio.reduce((previousValue, currentValue) => previousValue + currentValue.porcentagem, 0)
+  }
+  
+  //Meio que inutil isso aqui dps eu tiro
+  ValorTotalParaMeta(){
+    // no caso da estrategia de sempre comprar, quantos reais voce precisa para estabilizar a carteira hoje?
+    // Essa funcao tenta resolver isso
+    this.portfolio.forEach((data)=>{
+      if(data.porcentagem < (data.meta/100)){
+
+        this.valorTotalemReaisParaMeta += (((data.meta/100)-data.porcentagem) * this.valorTotalCarteira)
+      }
+    })
+
   }
 
   atualizarMeta(event: any, id: any): void {

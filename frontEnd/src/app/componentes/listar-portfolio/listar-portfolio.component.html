@@ -10,19 +10,19 @@
     <br>
 
     <!-- Tabela -->
-    <table class="table table-hover">
+    <table class="table table-sm ">
 
         <thead>
             <tr>
 
                 <th scope="col">Ativo</th>
                 <th scope="col">Cotacao</th>
-                
+
                 <th scope="col">Dy</th>
                 <th scope="col">Quantidade</th>
                 <th scope="col">Valor</th>
                 <th scope="col">Valor para meta</th>
- 
+
                 <th scope="col">Porcentagem</th>
                 <th scope="col">Meta</th>
                 @if (searchTermAtivo == true) {
@@ -39,28 +39,32 @@
         <tbody>
             @for (item of portfolio; track $index) {
 
-  
 
-            <tr class="tr.tbody">
+
+            <tr>
 
 
                 <!-- Button modal -->
                 <td id="ativo">
 
                     <!-- Button trigger modal -->
-                    <button id="buttonAtivo" *ngIf=" item.status == 'comprar'" type="button" class="btn btn-primary" [routerLink]="['/portfolio/'+item.id]">
-                        {{(item.ativo | slice:0:8)}} 
+                    <button id="buttonAtivo" *ngIf=" item.status == 'comprar'" type="button" class="btn btn-primary"
+                        [routerLink]="['/portfolio/'+item.id]">
+                        {{(item.ativo | slice:0:8)}}
                     </button>
-                    <button id="buttonAtivo" *ngIf=" item.status == 'aguardar'" type="button" class="btn btn-warning" [routerLink]="['/portfolio/'+item.id]">
-                        {{(item.ativo | slice:0:8)}} 
+                    <button id="buttonAtivo" *ngIf=" item.status == 'aguardar'" type="button" class="btn btn-warning"
+                        [routerLink]="['/portfolio/'+item.id]">
+                        {{(item.ativo | slice:0:8)}}
                     </button>
-                    <button id="buttonAtivo" *ngIf=" item.status == ''" type="button" class="btn btn-success" [routerLink]="['/portfolio/'+item.id]">
-                        {{(item.ativo | slice:0:8)}} 
+                    <button id="buttonAtivo" *ngIf=" item.status == ''" type="button" class="btn btn-success"
+                        [routerLink]="['/portfolio/'+item.id]">
+                        {{(item.ativo | slice:0:8)}}
                     </button>
-                    <button id="buttonAtivo" *ngIf=" item.status == 'vender'" type="button" class="btn btn-danger" [routerLink]="['/portfolio/'+item.id]">
-                        {{(item.ativo | slice:0:8)}} 
+                    <button id="buttonAtivo" *ngIf=" item.status == 'vender'" type="button" class="btn btn-danger"
+                        [routerLink]="['/portfolio/'+item.id]">
+                        {{(item.ativo | slice:0:8)}}
                     </button>
-                    
+
                 </td>
 
                 <!-- Cotacao -->
@@ -81,19 +85,21 @@
 
                 <!-- porcentagem -->
                 @if (searchTermAtivo == true) {
-                    <td style="border-left: 1px solid; border-left-color: rgba(0, 0, 0, 0.05)" [style]="item.porcentagem*100 < ((item.meta*100)/metaTotalCarteira) ? 'color:red' : ''">{{item.porcentagem|percent:"1.0-2"}}</td>
-                    }
-                @else{
-                    <td style="border-left: 1px solid; border-left-color: rgba(0, 0, 0, 0.05)" [style]="item.porcentagem*100 < item.meta ? 'color:red' : ''">{{item.porcentagem|percent:"1.0-2"}}</td>
+                <td [style]="item.porcentagem*100 < ((item.meta*100)/metaTotalCarteira) ? 'color:red' : ''">
+                    {{item.porcentagem|percent:"1.0-2"}}</td>
                 }
-                
+                @else{
+                <td [style]="item.porcentagem*100 < item.meta ? 'color:red' : ''">{{item.porcentagem|percent:"1.0-2"}}
+                </td>
+                }
+
 
                 <!-- input Meta -->
-                <td style="width:125px; border-right: 1px solid rgba(0, 0, 0, 0.05)">
-                    <div class="input-group input-group-sm mb-3">
+                <td >
+                    <div class="input-group input-group-sm mb-3" style="position: relative; top: 8px;">
                         <input type="number" class="form-control" id="meta" aria-label="Amount (to the nearest dollar)"
-                            value="{{item.meta}}" (change)="atualizarMeta($event,item.id)" name="meta" step="0.1"
-                            style="text-align: center; width: 50px;">
+                            value="{{item.meta}}" (change)="atualizarMeta($event,item.id)" name="meta" step="0.5"
+                            style="text-align: center; width: 75px; ">
                         <span class="input-group-text">%</span>
                     </div>
                 </td>
@@ -103,8 +109,8 @@
                 <td style="width:125px">
                     <div class="input-group input-group-sm mb-3">
                         <input type="number" class="form-control" id="meta" aria-label="Amount (to the nearest dollar)"
-                            value="{{((item.meta*100)/metaTotalCarteira).toFixed(2)}}" name="meta" step="0.1"
-                            style="text-align: center; width: 50px;">
+                            value="{{((item.meta*100)/metaTotalCarteira).toFixed(2)}}" name="meta" step="0.5"
+                            style="text-align: center; width: 75px;">
                         <span class="input-group-text">%</span>
                     </div>
                 </td>
@@ -132,19 +138,20 @@
 
                 <!-- Cota -->
                 <td>
-                    <div class="input-group input-group-sm mb-3">
+                    <div class="input-group input-group-sm mb-3" style="position: relative; top: 8px;">
                         <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" value="0"
                             name="cota" step="1" (change)="calculoCotas($event,item.id)"
-                            style="text-align: center; width: 50px;">
+                            style="text-align: center; width: 75px;">
 
                     </div>
                 </td>
 
                 <!-- Sinal para comprar abaixo do preco medio -->
                 <td>
-                    @if(item.cotacao < item.valuationDFC && (item.porcentagem*100) < item.meta){
-                        <img src="../../../../assets/location.png" alt="" srcset="" width="20px" title="A cotacao esta abaixo do preço valuation e a meta não foi batida, excelente momento para compra" >
-                    }
+                    @if(item.cotacao < item.valuationDFC && (item.porcentagem*100) < item.meta){ <img
+                        src="../../../../assets/location.png" alt="" srcset="" width="20px"
+                        title="A cotacao esta abaixo do preço valuation e a meta não foi batida, excelente momento para compra">
+                        }
                 </td>
 
             </tr>
@@ -154,7 +161,7 @@
         </tbody>
         <tfoot>
             <tr>
-              
+
                 <th scope="col">Ativo</th>
 
                 <th scope="col">
@@ -172,12 +179,13 @@
                     }
 
                 </th>
-                
+
                 <th scope="col"></th>
-                
+
 
                 <th scope="col">{{quantidadeTotalCarteira}}</th>
                 <th scope="col">{{valorTotalCarteira|currency:'BRL'}}</th>
+                <th scope="col">{{valorTotalemReaisParaMeta|currency:'BRL'}}</th>
                 <th scope="col">{{porcentagemTotalCarteira|percent:'1.0-2'}}</th>
                 <th scope="col"></th>
 
@@ -191,7 +199,7 @@
                 </th>
 
                 @if (searchTermAtivo == true) {
-                    <th scope="col"></th>
+                <th scope="col"></th>
                 }
                 @else {
 
@@ -234,7 +242,8 @@
             Realizar Upload do arquivo
         </li>
     </ol>
-    <p>Para baixar o arquivo para calcular o preco medio é necessario o relatorio de extratos negociacoes, mude o filtro para o ano atual</p>
+    <p>Para baixar o arquivo para calcular o preco medio é necessario o relatorio de extratos negociacoes, mude o filtro
+        para o ano atual</p>
 </div>
 
 }
@@ -245,4 +254,3 @@
 </div>
 
 }
-

@@ -1,44 +1,31 @@
-mat-form-field {
-    margin-right: 12px;
-}
-
-
-
+/* indice header da tabela que acompanha a pagina */
 table thead tr {
 
     position: sticky;
     top: 0;
     z-index: 10;
-    background: #fff;
-    box-shadow: 0 0 1px 0px #ddd, 0px 0px 17px 4px #fff;
-    border-radius: 10px;
+
 }
 
+/* indice foot da tabela que acompanha a pagina */
 table tfoot tr {
 
     position: sticky;
     bottom: 0;
     z-index: 10;
-    background: #fff;
-    box-shadow: 0 0 1px 0px #ddd, 0px 0px 17px 4px #fff;
-    border-radius: 10px;
 }
 
-.fileupload {
+/* mexendo no alinhamento e estetica da tabela */
+td,
+th {
     text-align: center;
+    align-content: center;
+  
+}
+
+
+.fileupload {
+    
     width: 440px;
     padding: 30px;
 }
-
-
-.table.table-hover {
-    width: 1650px;
-
-    margin-left: -210px;
-  }
-
-.modal-content {
-    width: 116%;
-}
-
-
