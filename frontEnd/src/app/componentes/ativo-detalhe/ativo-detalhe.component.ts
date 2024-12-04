@@ -10,13 +10,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { FormsModule } from '@angular/forms';
+import {
+  MatDialog,
+  MatDialogRef,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogTitle,
+  MatDialogContent,
+} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
 
-export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
-}
 
 @Component({
   selector: 'app-ativo-detalhe',
@@ -30,6 +33,7 @@ export interface Tile {
     HttpClientModule,
     AngularEditorModule,
     FormsModule,
+    MatButtonModule,
   ],
   templateUrl: './ativo-detalhe.component.html',
   styleUrl: './ativo-detalhe.component.css'
@@ -42,7 +46,10 @@ export class AtivoDetalheComponent {
   constructor(
     private _PortfolioService: PortfolioService,
     private _ActivatedRoute: ActivatedRoute,
+    public dialog: MatDialog,
   ) { }
+
+  
 
   ngOnInit() {
     this._ActivatedRoute.paramMap.subscribe((params) => {
@@ -60,7 +67,7 @@ export class AtivoDetalheComponent {
       this._PortfolioService.atualizarAtivo(ativoId, this.ativo).subscribe()
     })
 
-    alert('Seu Texto foi salvo')
+    this.openDialog('0ms', '0ms')
   }
 
 
@@ -104,5 +111,23 @@ export class AtivoDetalheComponent {
     
   }
 
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(DialogAnimationsExampleDialog, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
 
+}
+
+
+@Component({
+  selector: 'dialog-animations-example-dialog',
+  templateUrl: 'dialog-animations-dialog.html',
+  standalone: true,
+  imports: [MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent],
+})
+export class DialogAnimationsExampleDialog {
+  constructor(public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>) {}
 }

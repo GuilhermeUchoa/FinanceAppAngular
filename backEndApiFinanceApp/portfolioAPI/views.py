@@ -1,9 +1,7 @@
-from django_filters.rest_framework import DjangoFilterBackend
-from django.shortcuts import render, HttpResponse
+
 from django.shortcuts import get_object_or_404
-from django.views.generic import TemplateView
+
 from . serializers import PortfolioSerializer
-from rest_framework import viewsets, filters
 from . carteiraAddCei import carteiraAddCei, precoMedioAnual
 from . models import PortfolioModels
 from django.http import JsonResponse
@@ -12,10 +10,36 @@ import yfinance as yf
 import pandas as pd
 import warnings
 
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets, filters
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view, authentication_classes
 
 warnings.simplefilter("ignore")
 
+
+class PortfolioViewSet(viewsets.ModelViewSet):
+    
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    #Serializacao de Models
+    queryset = PortfolioModels.objects.all()
+    serializer_class = PortfolioSerializer
+    
+    # Filtro = filter_backends, search = search_fields
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filterset_fields = ["status"]
+    search_fields = ["ativo", "status","tipo"]
+    ordering_fields = "__all__"
+
+
+
 # Create your views here.
+@api_view(['POST'])
+@authentication_classes([JWTAuthentication]) 
 def upload_file(request):
     
     if request.method == 'POST' and request.FILES['file']:
@@ -33,6 +57,8 @@ def upload_file(request):
     else:
         return JsonResponse({'error': 'No file found in request'}, status=400)
 
+@api_view(['GET'])
+@authentication_classes([JWTAuthentication]) 
 def atualizarCotacao(request):
     """Atualiza as cotacoes"""
     try:
@@ -82,15 +108,4 @@ def atualizarCotacao(request):
     return JsonResponse({'message': 'Cotacao atualizada'})
 
 
-class PortfolioViewSet(viewsets.ModelViewSet):
-
-    #Serializacao de Models
-    queryset = PortfolioModels.objects.all()
-    serializer_class = PortfolioSerializer
-    
-    # Filtro = filter_backends, search = search_fields
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ["status"]
-    search_fields = ["ativo", "status","tipo"]
-    ordering_fields = "__all__"
 
