@@ -3,7 +3,7 @@ npm# Bem vindo ao Sistema de rebalanceamento de carteira FinanceApp
  - Esse sistema foi desenvolvido com a intenção de facilitar meus aportes em minha carteira de investimentos, sempre tive a dificuldade de calcular quanto comprar de cada cota, sendo acão, Fii, BDR ou Renda Fixa, para respeitar meu balanceamento, então desenvolvi este projeto inicialmente com uma tabela em excel e depois como hobbie e desafio utilizando angular e django.
 
 
- ![Home](https://github.com/GuilhermeUchoa/FinanceAppAngular/blob/main/src/assets/Home.png)
+ ![Home](https://github.com/GuilhermeUchoa/FinanceAppAngular/frontEnd/blob/main/src/assets/Home.png)
 
 
  # Para instalar este projeto eu seu PC:
@@ -46,4 +46,10 @@ npm# Bem vindo ao Sistema de rebalanceamento de carteira FinanceApp
 
 [x] - preco medio anual calculado
 
-[] - preco medio acumulativo 
+[x] - preco medio acumulativo 
+
+[ ] - Ajustar o Login
+
+[ ] - Ajustar o banco de dados
+
+[ ] - Ajustar dashboard detalhe

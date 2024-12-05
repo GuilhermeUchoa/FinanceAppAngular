@@ -1,26 +1,32 @@
-<div class="d-flex justify-content-center align-items-center">
-
+<div class="d-flex justify-content-center align-items-center" id="loginFormulario">
     <div class="card p-3">
 
-        <form>
-
+        <form action="" method="post" (ngSubmit)="login()">
             <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="text" id="email" class="form-control">
+                <label for="email">Usuario</label>
+                <input type="text" id="usuario" name="usuario" class="form-control" [(ngModel)]="usuario"> 
+                <!-- Quando usar ngModel nao se esqueca de colocar o name nas tags do html -->
+                
             </div>
 
             <div class="form-group">
                 <label for="senha">Senha</label>
-                <input type="password" id="senha" class="form-control">
+                <input type="password" id="senha" name="senha" class="form-control" [(ngModel)]="senha">
             </div>
+
+            {{alerta}}
+
             <br>
             <div class="form-group">
-                <button class="btn btn-success" type="submit">Entrar</button>
+                <button class="btn btn-success" type="submit" >Entrar</button>
             </div>
 
         </form>
 
     </div>
-
 </div>
+
+
+
+
 
