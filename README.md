@@ -53,3 +53,7 @@ npm# Bem vindo ao Sistema de rebalanceamento de carteira FinanceApp
 [ ] - Ajustar o banco de dados
 
 [ ] - Ajustar dashboard detalhe
+
+[ ] - Ajustar algoritmo que coloca ativo na carteira
+
+[ ] - Refatorar e refatorar

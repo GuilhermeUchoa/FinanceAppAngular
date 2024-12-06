@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Sum, F
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -19,8 +20,11 @@ class PortfolioModels(models.Model):
         ("rendaFixa", "rendaFixa"),
     )
 
+    # Usuario
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+
     # Dados iniciais
-    ativo = models.CharField(max_length=250, unique=True)
+    ativo = models.CharField(max_length=250)
     cotacao = models.FloatField(blank=True, null=True)
     quantidade = models.FloatField(blank=True, null=True, default=0)
     valor = models.FloatField(blank=True, null=True, default=0)
@@ -40,7 +44,7 @@ class PortfolioModels(models.Model):
     # Valuation
     precoMedio = models.FloatField(blank=True, null=True)
     valuationDy = models.FloatField(blank=True, null=True)  # preco maximo a 6%
-    valuationDFC = models.FloatField(blank=True, null=True)  # DFC
+    valuationDFC = models.FloatField(blank=True, null=True)
 
     # Comentarios
     comentarios = models.TextField(blank=True, null=True)
@@ -67,6 +71,13 @@ class PortfolioModels(models.Model):
     def calculoMetaTotal(self):
         metaTotal = PortfolioModels.objects.aggregate(Sum('meta'))
         return metaTotal['meta__sum']
+
+    class Meta:
+        # Restrições: o par (usuario, ativo) deve ser único
+        constraints = [
+            models.UniqueConstraint(
+                fields=['usuario', 'ativo'], name='unique_portfolio_per_user')
+        ]
 
     def __str__(self) -> str:
         return self.ativo

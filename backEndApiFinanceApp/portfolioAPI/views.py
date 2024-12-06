@@ -1,6 +1,5 @@
 
 from django.shortcuts import get_object_or_404
-
 from . serializers import PortfolioSerializer
 from . carteiraAddCei import carteiraAddCei, precoMedioAnual
 from . models import PortfolioModels
@@ -9,13 +8,15 @@ from datetime import date, timedelta, datetime
 import yfinance as yf
 import pandas as pd
 import warnings
-
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, authentication_classes
+from rest_framework import generics
+from django.contrib.auth.models import User
+
 
 warnings.simplefilter("ignore")
 
@@ -26,14 +27,18 @@ class PortfolioViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     #Serializacao de Models
-    queryset = PortfolioModels.objects.all()
+
     serializer_class = PortfolioSerializer
+    def get_queryset(self):
+        # Somente retorna frases do usuário autenticado
+        return PortfolioModels.objects.filter(usuario=self.request.user.id)
     
     # Filtro = filter_backends, search = search_fields
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ["status"]
     search_fields = ["ativo", "status","tipo"]
     ordering_fields = "__all__"
+    
 
 
 
@@ -47,9 +52,9 @@ def upload_file(request):
         name = request.FILES['file'].name
 
         if name[0:7] == 'posicao':
-            carteiraAddCei(uploaded_file)
+            carteiraAddCei(request,uploaded_file)
         if name[0:10] == 'negociacao':
-            precoMedioAnual(uploaded_file)
+            precoMedioAnual(request,uploaded_file)
 
         # Faça algo com o arquivo, como salvá-lo no servidor
         # Exemplo: uploaded_file.save('/path/to/save/location')

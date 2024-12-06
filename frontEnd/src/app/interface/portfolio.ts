@@ -1,5 +1,6 @@
 export interface Portfolio {
     "id": number,
+    "usuario":string,
     "ativo": string,
     "cotacao": number,
     "meta": number,
