@@ -9,19 +9,24 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/home']">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/portfolio']">Portfolio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Controle</a>
-        </li>
+        @if(isLoggedIn){
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/portfolio']">Portfolio</a>
+          </li>
+        }
       </ul>
     </div>
 
     <!-- Parte Direita: Itens extras, como botões ou links -->
     <div>
-      <button class="btn btn-outline-light" type="button" [routerLink]="['/login']">Login</button>
-      <button class="btn btn-outline-light" type="button" (click)="logout()">Logout</button>
+      @if(isLoggedIn){
+
+        <button class="btn btn-outline-light" type="button" (click)="logout()">Logout</button>
+      }
+      @else{
+        
+        <button class="btn btn-outline-light" type="button" [routerLink]="['/login']">Login</button>
+      }
 
     </div>
     

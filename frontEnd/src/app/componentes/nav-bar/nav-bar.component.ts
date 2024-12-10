@@ -15,18 +15,27 @@ import { AuthServiceService } from '../../service/authService/auth-service.servi
 })
 export class NavBarComponent {
 
+  isLoggedIn: boolean = false;
+
   constructor(
     private _AuthServiceService:AuthServiceService,
     private _Router:Router
   ){}
+
+  ngOnInit(){
+    this._AuthServiceService.hasLogin$.subscribe(loggedIn => {
+      this.isLoggedIn = loggedIn;
+    });
+  }
 
   
   logout(){
 
     this._AuthServiceService.logout()
     this._Router.navigate(['logout/'])
-    
   }
+
+
 
 
   

@@ -25,7 +25,7 @@ class PortfolioModels(models.Model):
 
     # Dados iniciais
     ativo = models.CharField(max_length=250)
-    cotacao = models.FloatField(blank=True, null=True)
+    cotacao = models.FloatField(blank=True, null=True, default=0)
     quantidade = models.FloatField(blank=True, null=True, default=0)
     valor = models.FloatField(blank=True, null=True, default=0)
 

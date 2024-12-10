@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 export class AuthServiceService {
 
   private apiUrl = 'http://localhost:8000/api';
-  private acessToken: string = '';
+  private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isLoggedIn());
+
 
   constructor(private http: HttpClient) { }
 
@@ -26,7 +27,7 @@ export class AuthServiceService {
   // Função para guardar o token no localStorage
   storeToken(token: string) {
     localStorage.setItem('access_token', token);
-    this.acessToken = token;
+    this.isLoggedInSubject.next(true);
   }
 
   // Função para obter o token do localStorage
@@ -43,6 +44,14 @@ export class AuthServiceService {
   // Função para logout (limpar token)
   logout() {
     localStorage.removeItem('access_token');
+    this.isLoggedInSubject.next(false);
   }
+  // Função para verificar se o usuário está logado
+  isLoggedIn(): boolean {
+    return !!this.getToken(); // Verifica se o token existe
+  }
+
+  // Observable para saber o estado de login
+  hasLogin$ = this.isLoggedInSubject.asObservable();
 
 }
