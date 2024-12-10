@@ -68,11 +68,13 @@ def atualizarCotacao(request):
     """Atualiza as cotacoes"""
     try:
 
+        
         Carteira = PortfolioModels
     
-        df = pd.DataFrame(round(yf.download([i.ativo+'.SA' for i in Carteira.objects.filter().exclude(tipo='rendaFixa')],
+        df = pd.DataFrame(round(yf.download([i.ativo+'.SA' for i in Carteira.objects.filter().exclude(tipo='Tesouro Direto')],
                                             start= f"{date.today().year}-01-01",
                                             threads=True)['Close'],2))
+        
         
         df.fillna(0,inplace=True)
 
@@ -83,8 +85,13 @@ def atualizarCotacao(request):
             
             ativo = str(i[:-3])
             cotacao = df[i][-1]
+            if cotacao > 0:  #Tentativa de resolver um bug
+                pass
+            else:
+                cotacao = 0
+            print(cotacao)
             cotacaoDoInicioDoAno = df[i][0]
-            carteira = get_object_or_404(Carteira,ativo=ativo)
+            carteira = get_object_or_404(Carteira,ativo=ativo,usuario=request.user)
             carteira.cotacao = cotacao
             carteira.valor = cotacao * carteira.quantidade
             carteira.variacaoAnual = (cotacao/cotacaoDoInicioDoAno - 1)
@@ -97,7 +104,7 @@ def atualizarCotacao(request):
                 dividend_yield = (dividendo_total_ano / cotacao)
                 carteira.dy = round(dividend_yield*100,2)
                 # Calculo de preço maximo a 6%
-                if carteira.tipo == 'fii':    
+                if carteira.tipo == 'Fundo de Investimento':    
                     precoMaximo = (cotacao*dividend_yield)/0.09
                 else:
                     precoMaximo = (cotacao*dividend_yield)/0.06
@@ -107,8 +114,8 @@ def atualizarCotacao(request):
                 pass
 
             carteira.save()
-    except:
-        pass
+    except NameError:
+        print(NameError)
 
     return JsonResponse({'message': 'Cotacao atualizada'})
 

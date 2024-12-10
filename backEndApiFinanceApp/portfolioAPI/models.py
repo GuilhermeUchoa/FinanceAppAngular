@@ -14,10 +14,10 @@ class PortfolioModels(models.Model):
     )
 
     TIPO = (
-        ("acao", "acao"),
-        ("bdr", "bdr"),
-        ("fii", "fii"),
-        ("rendaFixa", "rendaFixa"),
+        ("Acoes", "Acoes"),
+        ("Brazilian Depositary Receipts", "Brazilian Depositary Receipts"),
+        ("Fundo de Investimento", "Fundo de Investimento"),
+        ("Tesouro Direto", "Tesouro Direto"),
     )
 
     # Usuario

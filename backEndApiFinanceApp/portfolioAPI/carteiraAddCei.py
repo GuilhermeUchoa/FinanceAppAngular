@@ -5,23 +5,21 @@ import pandas as pd
 
 # Preciso melhorar esse codigo
 def carteiraAddCei(request, arquivo):
+    
+    xls = pd.ExcelFile(arquivo)
+    dictAtivo = {}
     listaCarteiraDF = []
-    df_acoes = pd.read_excel(arquivo, sheet_name=0).dropna()
-    df_bdr = pd.read_excel(arquivo, sheet_name=1).dropna()
-    df_fii = pd.read_excel(arquivo, sheet_name=2).dropna()
-    df_rf = pd.read_excel(arquivo, sheet_name=3).dropna()
-
-    dictAtivo = {'acao': df_acoes,
-                 'bdr': df_bdr,
-                 'fii': df_fii,
-                 'rendaFixa': df_rf,
-                 }
+    
+    for sheet_name in xls.sheet_names:
+        df = pd.read_excel(arquivo, sheet_name=sheet_name).dropna()
+        dictAtivo[sheet_name] = df
+    
 
     for chave, valor in dictAtivo.items():
 
         for i in range(len(valor)):
 
-            if chave == 'rendaFixa':
+            if chave == 'Tesouro Direto':
 
                 ativo = valor['Produto'].loc[i]
 
@@ -33,7 +31,7 @@ def carteiraAddCei(request, arquivo):
 
             try:
 
-                if Carteira.objects.filter(ativo=ativo, usuario=request.user).get().ativo == ativo and chave != 'rendaFixa':
+                if Carteira.objects.filter(ativo=ativo, usuario=request.user).get().ativo == ativo and chave != 'Tesouro Direto':
                     carteira = Carteira.objects.filter(ativo=ativo,usuario=request.user).get()
                     carteira.quantidade = valor['Quantidade'].loc[i]
                     carteira.usuario = request.user
@@ -53,7 +51,7 @@ def carteiraAddCei(request, arquivo):
 
             except:
 
-                if chave == 'rendaFixa':
+                if chave == 'Tesouro Direto':
                     print(valor['Quantidade'].loc[i])
                     carteira = Carteira(
                         ativo=ativo,

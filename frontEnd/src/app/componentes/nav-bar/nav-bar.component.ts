@@ -23,12 +23,12 @@ export class NavBarComponent {
   ){}
 
   ngOnInit(){
-    this._AuthServiceService.hasLogin$.subscribe(loggedIn => {
+    this._AuthServiceService.hasLogin$.subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
     });
   }
 
-  
+
   logout(){
 
     this._AuthServiceService.logout()
