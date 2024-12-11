@@ -48,12 +48,14 @@ npm# Bem vindo ao Sistema de rebalanceamento de carteira FinanceApp
 
 [x] - preco medio acumulativo 
 
-[ ] - Ajustar o Login
+[x] - Ajustar o Login
 
-[ ] - Ajustar o banco de dados
+[x] - Ajustar o banco de dados
 
 [ ] - Ajustar dashboard detalhe
 
-[ ] - Ajustar algoritmo que coloca ativo na carteira
+[x] - Ajustar algoritmo que coloca ativo na carteira
+
+[ ] - Ajustar Banco de dados com uma central, onde os clientes apenas copiam os valores atualizados, sem exceder a requisição a Api
 
 [ ] - Refatorar e refatorar
