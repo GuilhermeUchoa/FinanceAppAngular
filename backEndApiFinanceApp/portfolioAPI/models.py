@@ -46,8 +46,24 @@ class PortfolioModels(models.Model):
     valuationDy = models.FloatField(blank=True, null=True)  # preco maximo a 6%
     valuationDFC = models.FloatField(blank=True, null=True)
 
-    # Comentarios
+    # Valuation qualitativo
     comentarios = models.TextField(blank=True, null=True)
+    question0 = models.FloatField(default=0)
+    question1 = models.FloatField(default=0)
+    question2 = models.FloatField(default=0)
+    question3 = models.FloatField(default=0)
+    question4 = models.FloatField(default=0)
+    question5 = models.FloatField(default=0)
+    question6 = models.FloatField(default=0)
+    question7 = models.FloatField(default=0)
+    question8 = models.FloatField(default=0)
+    question9 = models.FloatField(default=0)
+    question10 = models.FloatField(default=0)
+    question11 = models.FloatField(default=0)
+
+    # Formulario
+    scoreQualitativo = models.FloatField(blank=True, null=True, default=0)
+    
 
     def calculoValor(self):
         ''' cotacao * quantidade de cada ativo '''
@@ -81,3 +97,5 @@ class PortfolioModels(models.Model):
 
     def __str__(self) -> str:
         return self.ativo
+
+
