@@ -12,6 +12,7 @@ urlpatterns = [
 
     path('atualizarCotacao/', views.atualizarCotacao, name='atualizarCotacao'),
     path('fileUpload/', views.upload_file, name='FileUpload'),
+    path('register/',views.register_user,name='register_user')
 
 
 ]

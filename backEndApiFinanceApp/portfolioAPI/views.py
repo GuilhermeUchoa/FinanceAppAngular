@@ -1,6 +1,6 @@
 
 from django.shortcuts import get_object_or_404
-from . serializers import PortfolioSerializer
+from . serializers import PortfolioSerializer, UserRegistrationSerializer
 from . carteiraAddCei import carteiraAddCei, precoMedioAnual
 from . models import PortfolioModels
 from django.http import JsonResponse
@@ -16,7 +16,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, authentication_classes
 from rest_framework import generics
 from django.contrib.auth.models import User
-
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.permissions import AllowAny 
 
 warnings.simplefilter("ignore")
 
@@ -42,7 +44,6 @@ class PortfolioViewSet(viewsets.ModelViewSet):
     ordering_fields = "__all__"
 
 
-# Create your views here.
 @api_view(['POST'])
 @authentication_classes([JWTAuthentication])
 def upload_file(request):
@@ -119,3 +120,13 @@ def atualizarCotacao(request):
         print(NameError)
 
     return JsonResponse({'message': 'Cotacao atualizada'})
+
+@api_view(["POST"])
+def register_user(request):
+    permission_classes = [AllowAny]
+    serializer = UserRegistrationSerializer(data=request.data)
+    
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
