@@ -1,0 +1,9 @@
+.thTitleTable {
+    rotate: -60deg; 
+    position: relative; 
+    top: -45px;
+}
+
+.trBodyTable{
+    text-align: center;
+}

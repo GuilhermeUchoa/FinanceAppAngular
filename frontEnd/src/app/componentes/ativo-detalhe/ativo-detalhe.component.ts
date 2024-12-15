@@ -20,6 +20,7 @@ import {
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { TabelaQualitativaComponent } from './tabela-qualitativa/tabela-qualitativa.component';
 
 @Component({
   selector: 'app-ativo-detalhe',
@@ -35,6 +36,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     FormsModule,
     MatButtonModule,
     MatCheckboxModule,
+    TabelaQualitativaComponent,
 
   ],
   templateUrl: './ativo-detalhe.component.html',
@@ -122,54 +124,8 @@ export class AtivoDetalheComponent {
   }
 
 
-  avaliacaoQualitativa: any = [
-    { "texto": "Tem imoveis bem localizados ?", "valor": 1 },
-    { "texto": "Tem bom gestor ?", "valor": 3.5 },
-    { "texto": "Os imoveis são novos e estão em boas condições ?", "valor": 1 },
-    { "texto": "Tem baixa vacancia historica (em relação ao seu setor)", "valor": 2 },
-    { "texto": "Os inquilinos são bons ?", "valor": 1 },
-    { "texto": "Tem diversificação interna ?", "valor": 2 },
-    { "texto": "Tem bom histórico de distribuição de proventos ?", "valor": 1 },
-    { "texto": "Apresenta características de perpetuidade ?", "valor": 1.5 },
-    { "texto": "É irreplicavel em sua região e em seu setor ?", "valor": 0.5 },
-    { "texto": "Os imóveis do fundo são versáteis (multi-uso) ?", "valor": 0.5 },
-    { "texto": "O fundo apresenta alavancagem expressiva ?", "valor": -1.5 },
 
-  ]
-
-  // Tabela de score qualitativa
-  scoreQualitativo(event: any, valor: number) {
-    
-    let question = event.source.id.split("-")[1]
-    let answer = parseFloat(event.source.id.split("-")[2])
-    console.log(question)
-    console.log(answer)
-
-    if (event.checked) {
-      this.ativo.scoreQualitativo += valor //melhorar essa logica aqui, esta dando erro
-      this.ativo[`question${question}`] = answer
-      
-
-    } else {
-      this.ativo.scoreQualitativo -= valor //melhorar essa logica aqui, esta dando erro
-      this.ativo[`question${question}`] = 0
-    }
- 
-
-    this._ActivatedRoute.paramMap.subscribe((params) => {
-      this._PortfolioService.atualizarAtivo(params.get('id'), this.ativo).subscribe()
-      
-    })
-
-  }
-
-  zerarScore(){
-    this._ActivatedRoute.paramMap.subscribe((params) => {
-      this.ativo.scoreQualitativo = 0
-      this._PortfolioService.atualizarAtivo(params.get('id'), this.ativo).subscribe()
-      
-    })
-  }
+  
 
 }
 

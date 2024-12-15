@@ -1,0 +1,42 @@
+<!-- Formulario colocar em outro componente, ficou muito bacana, mas precisa refatorar esse codigo -->
+@if (ativo.tipo == 'Fundo de Investimento') {
+
+<table>
+    <thead>
+        <tr style="text-align: center;">
+            <th>Itens Avaliados</th>
+            <th>Peso</th>
+            <th class="thTitleTable"> atende completamente</th>
+            <th class="thTitleTable"> atende bem</th>
+            <th class="thTitleTable"> atende regularmente</th>
+            <th class="thTitleTable"> atende precariamente</th>
+            <th class="thTitleTable"> Não atende</th>
+            <th class="thTitleTable"> Peso X Nota</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(item of avaliacaoQualitativa;track $index){
+            
+        <tr class="trBodyTable">
+            <td style="text-align:justify;">{{item.texto}}</td>
+            <td><input type="number" style="width: 60px; text-align: center;" [value]="item.valor"></td>
+            <td><mat-checkbox id="{{$index}}-1" [checked]="ativo['question'+$index] == item.valor"   (change)="scoreQualitativo($event,item.valor/1)"></mat-checkbox></td>
+            <td><mat-checkbox id="{{$index}}-2" [checked]="ativo['question'+$index] == item.valor/2" (change)="scoreQualitativo($event,item.valor/2)"></mat-checkbox></td>
+            <td><mat-checkbox id="{{$index}}-3" [checked]="ativo['question'+$index] == item.valor/3" (change)="scoreQualitativo($event,item.valor/3)"></mat-checkbox></td>
+            <td><mat-checkbox id="{{$index}}-4" [checked]="ativo['question'+$index] == item.valor/4" (change)="scoreQualitativo($event,item.valor/4)"></mat-checkbox></td>
+            <td><mat-checkbox id="{{$index}}-5" [checked]="ativo['question'+$index] == item.valor/5" (change)="scoreQualitativo($event,item.valor/5)"></mat-checkbox></td>
+
+            <td></td>
+        </tr>
+        }
+    </tbody>
+    <tfoot style="position: relative; left: 45%;">
+        <h3 style="position: relative; left: 15%;">Score: {{ativo.scoreQualitativo|number:'0.0-2'}}</h3>
+        <h5>(max= +14 min= -1.5)</h5>
+        <button id="buttonAtivo" (click)="zerarScore()" type="button" class="btn btn-primary">Zerar
+            Score</button>
+    </tfoot>
+</table>
+
+
+}

@@ -63,7 +63,16 @@ class PortfolioModels(models.Model):
 
     # Formulario
     scoreQualitativo = models.FloatField(blank=True, null=True, default=0)
-    
+
+    #
+    def calculoScoreQualitativo(self):
+        soma = (self.question0 + self.question1 + self.question2 + self.question3 + self.question4 + self.question5 + self.question6 +
+                self.question7 + self.question8 + self.question9 + self.question10 + self.question11)
+        
+        return float(soma)
+        
+
+        
 
     def calculoValor(self):
         ''' cotacao * quantidade de cada ativo '''
@@ -89,6 +98,7 @@ class PortfolioModels(models.Model):
         return metaTotal['meta__sum']
 
     class Meta:
+        
         # Restrições: o par (usuario, ativo) deve ser único
         constraints = [
             models.UniqueConstraint(
@@ -97,5 +107,10 @@ class PortfolioModels(models.Model):
 
     def __str__(self) -> str:
         return self.ativo
+    
+    def save(self, *args, **kwargs):
+        # Antes de salvar, calcula o score qualitativo
+        self.scoreQualitativo = self.calculoScoreQualitativo()
+        super(PortfolioModels, self).save(*args, **kwargs)  # Chama o método save da classe pai
 
 

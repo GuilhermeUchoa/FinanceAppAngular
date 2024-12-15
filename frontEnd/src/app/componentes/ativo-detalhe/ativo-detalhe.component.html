@@ -39,7 +39,7 @@
           <p style="color: green;">Status: {{ativo.status}}</p>
           }
           @else{
-          <p style="">Status: {{ativo.status}}</p>
+          <p>Status: {{ativo.status}}</p>
           }
           <p>PrecoMedio: {{ativo.precoMedio}}</p>
           <p>ValuationDy: {{ativo.valuationDy|currency:'BRL'}}</p>
@@ -50,62 +50,12 @@
       </mat-card>
 
     </mat-grid-tile>
-
-    <!-- Formulario colocar em outro componente, ficou muito bacana, mas precisa refatorar esse codigo -->
-    @if (ativo.tipo == 'Fundo de Investimento') {
-
-    <mat-grid-tile colspan="5" rowspan="3">
-
-      <mat-card class="example-card" appearance="outlined">
-
-        <mat-card-content>
-
-          <table>
-            <thead>
-              <tr style="text-align: center;">
-                <th>Itens Avaliados</th>
-                <th>Peso</th>
-                <th class="thTitleTable"> atende completamente</th>
-                <th class="thTitleTable"> atende bem</th>
-                <th class="thTitleTable"> atende regularmente</th>
-                <th class="thTitleTable"> atende precariamente</th>
-                <th class="thTitleTable"> Não atende</th>
-                <th class="thTitleTable"> Peso X Nota</th>
-              </tr>
-            </thead>
-            <tbody>
-              @for(item of avaliacaoQualitativa;track $index){
-
-              <tr class="trBodyTable">
-                <td style="text-align:justify;">{{item.texto}}</td>
-                <td><input type="number" style="width: 60px; text-align: center;" [value]="item.valor"></td>
-
-
-                <td><mat-checkbox [checked]="ativo['question'+$index]==5" [disabled]="ativo['question'+$index]!=5" id="answer-{{$index}}-5" (change)="scoreQualitativo($event, item.valor)" ></mat-checkbox></td>
-                <td><mat-checkbox [checked]="ativo['question'+$index]==4"  id="answer-{{$index}}-4" (change)="scoreQualitativo($event, item.valor)" ></mat-checkbox></td>
-                <td><mat-checkbox [checked]="ativo['question'+$index]==3"  id="answer-{{$index}}-3" (change)="scoreQualitativo($event, item.valor)" ></mat-checkbox></td>
-                <td><mat-checkbox [checked]="ativo['question'+$index]==2"  id="answer-{{$index}}-2" (change)="scoreQualitativo($event, item.valor)" ></mat-checkbox></td>
-                <td><mat-checkbox [checked]="ativo['question'+$index]==1"  id="answer-{{$index}}-1" (change)="scoreQualitativo($event, item.valor)" ></mat-checkbox></td>
-  
-                <td>{{ativo['question'+$index]}}</td>
-              </tr>
-              }
-            </tbody>
-            <tfoot style="position: relative; left: 45%;">
-              <h1 style="position: relative; left: 15%;">Score: {{ativo.scoreQualitativo|number:'0.0-2'}}</h1>
-              <h3>(max= +14 min= -1.5)</h3>
-              <button id="buttonAtivo" (click)="zerarScore()" type="button" class="btn btn-primary">Zerar Score</button>
-            </tfoot>
-          </table>
-
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-
-    }
-
+    
   </mat-grid-list>
-
+  <br>
+  <!-- Aqui vai ficar a tabelaQualitativa filha -->
+  <app-tabela-qualitativa [ativoId]="ativoId" [ativo]="ativo"></app-tabela-qualitativa>
+  <br>
   <!-- Comentarios e anotacoes -->
   <angular-editor [config]="editorConfig" [(ngModel)]="ativo.comentarios">
     <ng-template #customButtons>
